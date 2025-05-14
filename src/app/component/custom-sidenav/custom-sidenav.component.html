@@ -1,0 +1,14 @@
+<div class="mt-4 flex flex-col p-8 gap-4">
+  @for (item of menuItems(); track $index) {
+  <a [routerLink]="item.route" routerLinkActive #rla="routerLinkActive"
+    class="group flex items-center gap-2 focus:bg-[#1a1f38] p-2 rounded-2xl">
+    <div class="p-1 bg-[#1a1f38] rounded-xl flex justify-center items-center group-focus-within:bg-[#0077ff]">
+      <mat-icon [style.color]="rla.isActive ? 'white' : '#0077ff'" class="transition-colors duration-300">{{ item.icon }}</mat-icon>
+    </div>
+    <span class="text-white text-lg">{{ item.label }}</span>
+  </a>
+  }
+</div>
+<div class="w-full flex justify-center mt-8">
+  <button (click)="onLogout()" class="cursor-pointer"><mat-icon [style.color]="'#0077ff'">logout</mat-icon></button>
+</div>
