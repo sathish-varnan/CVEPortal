@@ -1,0 +1,53 @@
+<section class="w-screen h-full flex flex-col">
+  <nav class="w-full h-1/12 bg-[#d7e3ff] p-2">
+    <span class="text-2xl">Angular Portals</span>
+  </nav>
+  <main class="w-full flex p-8 gap-4">
+    <mat-card class="w-1/4" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Customer Portal</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="customer.jpg" alt="Customer" class="w-full h-1/3">
+      <mat-card-content class="mt-4">
+        <p class="text-justify">
+          The customer portal helps explore the features of Sales and Finance modules. Built to manage customer data, it
+          supports tracking business transactions. This solution will be developed using Angular, SAP RFC Webservice,
+          and backed by an SAP database system. </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="goToCustomer()">OPEN</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="w-1/4" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Vendor Portal</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="vendor-image.jpg" alt="Vendor" class="w-full h-1/3">
+      <mat-card-content class="mt-4">
+        <p class="text-justify">
+          The Vendor Portal is designed to support key functions in Material Management and Finance. It helps manage
+          vendor data and track transactions with the company. This system will be built using Angular, SAP PI/PO for
+          integration, and an SAP database backend.
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="goToVendor()">OPEN</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="w-1/4" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Employee Portal</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="employee.png" alt="Employee" class="w-full h-1/3">
+      <mat-card-content class="mt-4">
+        <p class="text-justify">
+          The Employee Portal is built to handle HR and Finance functions. It offers access to pay slips, leave balance,
+          and leave requests. It helps employees connect with HR services. The portal uses Angular,
+          SAP PI/PO for integration, and an SAP backend. </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="goToEmployee()">OPEN</button>
+      </mat-card-actions>
+    </mat-card>
+  </main>
+</section>
