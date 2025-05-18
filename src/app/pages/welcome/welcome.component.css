@@ -1,0 +1,41 @@
+.head-title {
+    font-size: xx-large;
+    color: white;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    padding: 2rem;
+}
+
+.card {
+    width: 25%;
+    border-radius: 1rem;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    padding: 0.75rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    color: white;
+    font-weight:300;
+}
+
+.card-button {
+    background-color: var(--secondary-color);
+    border-radius: 1rem;
+    padding: 0.1rem;
+    cursor: pointer;
+    color: white;
+    padding: 4px 20px 4px 20px;
+}
+
+.card-button:hover {
+    opacity: 90%;
+}

@@ -4,8 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-credit-and-debit-memos',
   imports: [],
   templateUrl: './credit-and-debit-memos.component.html',
-  styles: ``
+  styleUrl: './credit-and-debit-memos.component.css'
 })
 export class CreditAndDebitMemosComponent {
-
 }

@@ -1,45 +1,43 @@
-<div class="w-full h-full p-8">
-  <h1 class="relative text-2xl text-white">My Profile</h1>
-  <div class="mt-4 bg-linear-to-br from-[#060e2e] to-[#05336e] rounded-2xl p-4">
-    <div class="flex gap-8">
-      <img src="person.jpg" alt="user" class="w-20 rounded-full">
-      <span class="flex flex-col justify-center text-white">
+<div class="customer-profile-container">
+  <h1>Hi, Sathish Varnan👋🏻</h1>
+  <div class="card-container">
+    <div class="profile-card">
+      <img src="person.jpg" alt="user">
+      <span class="detail-card">
         <span>Sathish Varnan</span>
-        <span class="text-sm font-light">Tamil Nadu, IN</span>
+        <span>Chennai, IN</span>
       </span>
     </div>
   </div>
-  <div class="mt-4 bg-linear-to-br from-[#060e2e] to-[#05336e] rounded-2xl p-4 text-white">
-    <div>
+  <div class="card-container">
+    <div class="card-title">
       <span>Personal Information</span>
     </div>
-    <div class=" mt-4">
-      <div class="grid grid-cols-2 gap-2">
-        <div class="flex flex-col">
-          <span class="font-light">First Name</span>
+      <div class="info-card">
+        <div class="info-tile">
+          <span class="font-light">Name</span>
           <span>Sathish</span>
         </div>
-        <div class="flex flex-col">
-          <span class="font-light">Second Name</span>
-          <span>Varnan</span>
+        <div class="info-tile">
+          <span class="font-light">Customer ID</span>
+          <span>{{"1".toString().padStart(10, '0')}}</span>
         </div>
-        <div class="flex flex-col">
-          <span class="font-light">Email Address</span>
-          <span>varnansathish&#64;dummy.com</span>
+        <div class="info-tile">
+          <span class="font-light">City</span>
+          <span>Chennai</span>
         </div>
-        <div class="flex flex-col">
-          <span class="font-light">Phone number</span>
-          <span>+91 4400 6600 89</span>
+        <div class="info-tile">
+          <span class="font-light">Postal code</span>
+          <span>600 063</span>
         </div>
-        <div class="flex flex-col">
-          <span class="font-light">Bio</span>
-          <span>SAP Analyst</span>
+        <div class="info-tile">
+          <span class="font-light">Landmark</span>
+          <span>Mudichur</span>
         </div>
-        <div class="flex flex-col">
-          <span class="font-light">Location</span>
-          <span>TamilNadu, IN</span>
+        <div class="info-tile">
+          <span class="font-light">Country Key</span>
+          <span>IN</span>
         </div>
       </div>
-    </div>
   </div>
 </div>

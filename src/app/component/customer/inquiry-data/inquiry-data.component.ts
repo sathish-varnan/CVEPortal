@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-inquiry-data',
   imports: [],
   templateUrl: './inquiry-data.component.html',
-  styles: ``
+  styleUrl: './inquiry-data.component.css'
 })
 export class InquiryDataComponent {
 

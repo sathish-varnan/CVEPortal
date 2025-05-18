@@ -1,17 +1,17 @@
-<section class="w-screen h-full flex flex-col bg-radial from-[#0046fe] to-[#03183c] p-8">
-  <span class="text-2xl text-white">Angular Portals</span>
-  <main class="w-full flex p-8 gap-4">
-    <div class="w-1/4 rounded-2xl p-3 flex flex-col gap-2 items-start bg-[#050f30]">
-      <span class="text-xl text-white font-light">Customer Portal</span>
-      <button (click)="goToCustomer()" class="w-20 bg-[#0075ff] rounded-2xl p-1 text-white cursor-pointer">OPEN</button>
+<section class="main-container">
+  <span class="head-title" id="angular">Angular Portals</span>
+  <main class="container">
+    <div class="card">
+      <span class="card-title">Customer Portal</span>
+      <button (click)="goToCustomer()" class="card-button">OPEN</button>
     </div>
-    <div class="w-1/4 rounded-2xl p-3 flex flex-col gap-2 items-start bg-[#050f30]">
-      <span class="text-xl text-white font-light">Vendor Portal</span>
-      <button (click)="goToVendor()" class="w-20 bg-[#0075ff] rounded-2xl p-1 text-white cursor-pointer">OPEN</button>
+    <div class="card">
+      <span class="card-title">Vendor Portal</span>
+      <button (click)="goToVendor()" class="card-button">OPEN</button>
     </div>
-    <div class="w-1/4 rounded-2xl p-3 flex flex-col gap-2 items-start bg-[#050f30]">
-      <span class="text-xl text-white font-light">Employee Portal</span>
-      <button (click)="goToEmployee()" class="w-20 bg-[#0075ff] rounded-2xl p-1 text-white cursor-pointer">OPEN</button>
+    <div class="card">
+      <span class="card-title">Employee Portal</span>
+      <button (click)="goToEmployee()" class="card-button">OPEN</button>
     </div>
   </main>
 </section>

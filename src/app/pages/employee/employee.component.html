@@ -1,8 +1,8 @@
-<section class="w-screen min-h-screen flex">
-  <div class="min-h-screen w-1/5 bg-linear-to-b from-[#050b26] to-[#011740]">
+<section class="customer-container">
+  <div class="customer-sidenav">
     <app-employee-sidenav></app-employee-sidenav>
   </div>
-  <div class="min-h-screen w-4/5 bg-radial from-[#0046fe] to-[#03183c]">
-    <router-outlet></router-outlet>
+  <div class="customer-content">
+    <router-outlet #outlet="outlet"></router-outlet>
   </div>
 </section>

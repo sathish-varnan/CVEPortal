@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-sales-order-data',
   imports: [],
   templateUrl: './sales-order-data.component.html',
-  styles: ``
+  styleUrl: './sales-order-data.component.css'
 })
 export class SalesOrderDataComponent {
 

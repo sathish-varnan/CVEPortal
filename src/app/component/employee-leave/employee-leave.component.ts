@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-employee-leave',
   imports: [],
   templateUrl: './employee-leave.component.html',
-  styles: ``
+  styleUrl: './employee-leave.component.css'
 })
 export class EmployeeLeaveComponent {
 

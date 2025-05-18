@@ -1,19 +1,37 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-login',
-  imports: [MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './customer-login.component.html',
-  styles: ``
+  styleUrl: './customer-login.component.css'
 })
 export class CustomerLoginComponent {
   router = inject(Router);
+
+  showPassword = signal(false);
+  eyeIcon = computed(() => {
+    if (this.showPassword()) {
+      return "visibility"
+    } else {
+      return "visibility_off"
+    }
+  });
+
+  passwordInputType = computed(() => {
+    if (this.showPassword()) {
+      return "text";
+    } else {
+      return "password";
+    }
+  })
+
+  onEyeClick() {
+    this.showPassword.set(!this.showPassword());
+  }
+
   userDetails = new FormGroup({
     id: new FormControl(''),
     password: new FormControl('')
@@ -22,6 +40,10 @@ export class CustomerLoginComponent {
     let name = this.userDetails.value.id ?? '';
     let password = this.userDetails.value.password ?? '';
     console.log(name, password);
-    this.router.navigate(['/customer/']);
+    // if (name === 'Sathish' && password === 'Welcome@123') {
+      this.router.navigate(['/customer/profile']);
+    //} else {
+    //  alert("Check your credentials!!");
+    //}
   }
 }

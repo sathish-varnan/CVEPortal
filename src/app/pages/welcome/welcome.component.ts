@@ -5,10 +5,11 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [],
   templateUrl: './welcome.component.html',
-  styles: ``
+  styleUrl: './welcome.component.css'
 })
 export class WelcomeComponent {
   router = inject(Router);
+   
 
   goToCustomer() {
     this.router.navigate(['/customer/login']);
@@ -17,9 +18,8 @@ export class WelcomeComponent {
   goToVendor() {
     this.router.navigate(['/vendor/login']);
   }
-
+ 
   goToEmployee() {
     this.router.navigate(['/employee/login']);
   }
 }
-

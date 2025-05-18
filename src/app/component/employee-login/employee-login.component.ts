@@ -1,19 +1,37 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-login',
-  imports: [MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './employee-login.component.html',
-  styles: ``
+  styleUrl: './employee-login.component.css'
 })
 export class EmployeeLoginComponent {
   router = inject(Router);
+
+  showPassword = signal(false);
+  eyeIcon = computed(() => {
+    if (this.showPassword()) {
+      return "visibility"
+    } else {
+      return "visibility_off"
+    }
+  });
+
+  passwordInputType = computed(() => {
+    if (this.showPassword()) {
+      return "text";
+    } else {
+      return "password";
+    }
+  })
+
+  onEyeClick() {
+    this.showPassword.set(!this.showPassword());
+  }
+
   userDetails = new FormGroup({
     id: new FormControl(''),
     password: new FormControl('')
@@ -23,6 +41,6 @@ export class EmployeeLoginComponent {
     let id = this.userDetails.value.id ?? '';
     let password = this.userDetails.value.password ?? '';
     console.log(id, password);
-    this.router.navigate(['/employee/']);
+    this.router.navigate(['/employee/profile']);
   }
 }

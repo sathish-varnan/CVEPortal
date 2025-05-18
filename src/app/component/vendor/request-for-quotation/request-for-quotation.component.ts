@@ -4,8 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-request-for-quotation',
   imports: [],
   templateUrl: './request-for-quotation.component.html',
-  styles: ``
+  styleUrl: './request-for-quotation.component.css'
 })
 export class RequestForQuotationComponent {
-
 }

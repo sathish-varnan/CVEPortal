@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-vendor-profile',
-  imports: [MatCardModule],
+  imports: [],
   templateUrl: './vendor-profile.component.html',
-  styles: ``
+  styleUrl: './vendor-profile.component.css'
 })
 export class VendorProfileComponent {
 

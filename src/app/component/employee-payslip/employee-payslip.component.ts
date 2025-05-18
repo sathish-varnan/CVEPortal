@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-employee-payslip',
   imports: [],
   templateUrl: './employee-payslip.component.html',
-  styles: ``
+  styleUrl: './employee-payslip.component.css'
 })
 export class EmployeePayslipComponent {
 

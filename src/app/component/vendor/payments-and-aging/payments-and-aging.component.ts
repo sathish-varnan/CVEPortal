@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-payments-and-aging',
   imports: [],
   templateUrl: './payments-and-aging.component.html',
-  styles: ``
+  styleUrl: './payments-and-aging.component.css'
 })
 export class PaymentsAndAgingComponent {
 

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-goods-receipt',
   imports: [],
   templateUrl: './goods-receipt.component.html',
-  styles: ``
+  styleUrl: './goods-receipt.component.css'
 })
 export class GoodsReceiptComponent {
 

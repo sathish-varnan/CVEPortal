@@ -1,5 +1,4 @@
 import { Component, inject, signal } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 export type MenuItem = {
@@ -10,13 +9,16 @@ export type MenuItem = {
 
 @Component({
   selector: 'app-vendor-sidenav',
-  imports: [MatIconModule, RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './vendor-sidenav.component.html',
-  styles: ``
+  styleUrl: './vendor-sidenav.component.css'
 })
 export class VendorSidenavComponent {
 
   router = inject(Router);
+
+  localPrimaryColor = "#1a1f38";
+  secondaryColor = "#0075ff";
 
   onLogout() {
     this.router.navigate(['/']);

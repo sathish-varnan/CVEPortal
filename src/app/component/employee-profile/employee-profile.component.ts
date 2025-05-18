@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-employee-profile',
-  imports: [MatCardModule],
+  imports: [],
   templateUrl: './employee-profile.component.html',
-  styles: ``
+  styleUrl: './employee-profile.component.css'
 })
 export class EmployeeProfileComponent {
-
 }

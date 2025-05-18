@@ -40,41 +40,36 @@ export const routes: Routes = [
     component: CustomerComponent,
     children: [
       {
-        path: '',
-        pathMatch: 'full',
-        component: CustomerProfileComponent
-      },
-      {
         path: 'profile',
-        component: CustomerProfileComponent
+        component: CustomerProfileComponent,
       },
       {
         path: 'invoice-details',
-        component: InvoiceDetailsComponent
+        component: InvoiceDetailsComponent,
       },
       {
         path: 'payments-and-aging',
-        component: PaymentsAndAgingComponent
+        component: PaymentsAndAgingComponent,
       },
       {
         path: 'sales-order-data',
-        component: SalesOrderDataComponent
+        component: SalesOrderDataComponent,
       },
       {
         path: 'overall-sales-summary',
-        component: OverallSalesSummaryComponent
+        component: OverallSalesSummaryComponent,
       },
       {
         path: 'inquiry-data',
-        component: InquiryDataComponent
+        component: InquiryDataComponent,
       },
       {
         path: 'credit-debit-memos',
-        component: CreditDebitMemosComponent
+        component: CreditDebitMemosComponent,
       },
       {
         path: 'list-of-delivery',
-        component: ListOfDeliveryComponent
+        component: ListOfDeliveryComponent,
       }
     ]
   },
@@ -86,11 +81,6 @@ export const routes: Routes = [
     path: 'vendor',
     component: VendorComponent,
     children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        component: VendorProfileComponent
-      },
       {
         path: 'profile',
         component: VendorProfileComponent
@@ -130,11 +120,6 @@ export const routes: Routes = [
     path: 'employee',
     component: EmployeeComponent,
     children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        component: EmployeeProfileComponent
-      },
       {
         path: 'profile',
         component: EmployeeProfileComponent
