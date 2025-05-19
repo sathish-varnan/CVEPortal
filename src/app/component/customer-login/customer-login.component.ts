@@ -1,3 +1,4 @@
+import { HttpClient} from '@angular/common/http';
 import { Component, computed, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class CustomerLoginComponent {
   router = inject(Router);
+  http = inject(HttpClient);
 
   showPassword = signal(false);
   eyeIcon = computed(() => {
@@ -39,11 +41,23 @@ export class CustomerLoginComponent {
   onClick() {
     let name = this.userDetails.value.id ?? '';
     let password = this.userDetails.value.password ?? '';
+    this.http.post<{status: string}>('http://localhost:3000/customer/login', {
+      id: name,
+      password: password
+    }).subscribe({
+    next: (response) => {
+      console.log(response);
+      if (response.status === 'S') {
+        this.router.navigate(['/customer/profile']);
+      } else {
+        alert('Check your credentials!!');
+      }
+    },
+      error: (err) => {
+        console.error('Login failed:', err);
+        alert('An error occurred. Please try again later.');
+      }
+    });
     console.log(name, password);
-    // if (name === 'Sathish' && password === 'Welcome@123') {
-      this.router.navigate(['/customer/profile']);
-    //} else {
-    //  alert("Check your credentials!!");
-    //}
   }
 }

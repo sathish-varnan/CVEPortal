@@ -1,10 +1,10 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { CustomSidenavComponent } from '../../component/custom-sidenav/custom-sidenav.component';
+import { CustomerSidenavComponent } from '../../component/customer-sidenav/customer-sidenav.component';
 
 @Component({
   selector: 'app-customer',
-  imports: [RouterOutlet,CustomSidenavComponent],
+  imports: [RouterOutlet,CustomerSidenavComponent],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.css',
 })

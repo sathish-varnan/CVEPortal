@@ -8,12 +8,12 @@ export type MenuItem = {
 }
 
 @Component({
-  selector: 'app-custom-sidenav',
+  selector: 'app-customer-sidenav',
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './custom-sidenav.component.html',
-  styleUrl: './custom-sidenav.component.css'
+  templateUrl: './customer-sidenav.component.html',
+  styleUrl: './customer-sidenav.component.css'
 })
-export class CustomSidenavComponent {
+export class CustomerSidenavComponent {
   router = inject(Router);
   localPrimaryColor = "#1a1f38";
   secondaryColor = "#0075ff";
