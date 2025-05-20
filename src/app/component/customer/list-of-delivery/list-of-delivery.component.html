@@ -1,1 +1,62 @@
-<p>list-of-delivery works!</p>
+<div class="delivery-container">
+    <h1 class="delivery-title">delivery Order data : {{ data().length }} entries found</h1>
+    <div class="card-container">
+        <div class="card-list">
+            @for (delivery of data(); track delivery.id) {
+                <div class="delivery-card">
+                    <div class="delivery-card-content">
+                        <div class="show-block">
+                            <div class="tile">
+                                <span>Description</span>
+                                <span>{{ delivery.data.Arktx }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Quantity</span>
+                                <span>{{ delivery.data.Lfimg }} {{ delivery.data.Vrkme }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Price</span>
+                                <span>{{ delivery.data.Netwr | currency : delivery.data.Waerk}} </span>
+                            </div>
+                            <div class="tile">
+                                <span>Delivery Status</span>
+                                <span>{{ getStatus(delivery.data.Bestk) }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Delivery date</span>
+                                <span>{{ delivery.data.Lfdat }}</span>
+                            </div>
+                        </div>
+                        <div class="hide-block" [ngClass]="{'expanded' : delivery.expanded}">
+                            <div class="tile">
+                                <span>Document Number</span>
+                                <span>{{ delivery.data.Vbeln }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Item Number</span>
+                                <span>{{ delivery.data.Posnr }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Material Number</span>
+                                <span>{{ delivery.data.Posnr }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Purchase Order</span>
+                                <span>{{ delivery.data.Vstel }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Plant</span>
+                                <span>{{ delivery.data.Werks }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Storage Location</span>
+                                <span>{{ delivery.data.Lgort }}</span>
+                            </div>
+                        </div>
+                        <button (click)="onExpand(delivery)">{{ delivery.expanded ? "Close" : "Collapse" }}</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,11 +1,11 @@
 <div class="customer-profile-container">
-  <h1>Hi, {{profileDetails.firstName}}👋🏻</h1>
+  <h1>Hi, {{profileDetails().firstName}}👋🏻</h1>
   <div class="card-container">
     <div class="profile-card">
       <img src="person.jpg" alt="user">
       <span class="detail-card">
-        <span>{{ profileDetails.firstName }}</span>
-        <span>{{profileDetails.city}}, {{profileDetails.countryKey}}</span>
+        <span>{{ profileDetails().firstName }}</span>
+        <span>{{profileDetails().city}}, {{profileDetails().countryKey}}</span>
       </span>
     </div>
   </div>
@@ -16,27 +16,27 @@
       <div class="info-card">
         <div class="info-tile">
           <span class="font-light">Name</span>
-          <span>{{profileDetails.firstName }}</span>
+          <span>{{profileDetails().firstName }}</span>
         </div>
         <div class="info-tile">
           <span class="font-light">Customer ID</span>
-          <span>{{profileDetails.customerID.toString().padStart(10, '0')}}</span>
+          <span>{{profileDetails().customerID.toString().padStart(10, '0')}}</span>
         </div>
         <div class="info-tile">
           <span class="font-light">City</span>
-          <span>{{profileDetails.city}}</span>
+          <span>{{profileDetails().city}}</span>
         </div>
         <div class="info-tile">
           <span class="font-light">Postal code</span>
-          <span>{{profileDetails.postalCode}}</span>
+          <span>{{profileDetails().postalCode}}</span>
         </div>
         <div class="info-tile">
           <span class="font-light">Landmark</span>
-          <span>{{profileDetails.landmark}}</span>
+          <span>{{profileDetails().landmark}}</span>
         </div>
         <div class="info-tile">
           <span class="font-light">Country Key</span>
-          <span>{{profileDetails.countryKey}}</span>
+          <span>{{profileDetails().countryKey}}</span>
         </div>
       </div>
   </div>

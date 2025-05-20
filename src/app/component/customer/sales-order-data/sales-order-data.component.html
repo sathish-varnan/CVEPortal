@@ -1,1 +1,70 @@
-<p>sales-order-data works!</p>
+<div class="sales-container">
+    <h1 class="sales-title">Sales Order data : {{ data().length }} entries found</h1>
+    <div class="card-container">
+        <div class="card-list">
+            @for (sales of data(); track sales.id) {
+                <div class="sales-card">
+                    <div class="sales-card-content">
+                        <div class="show-block">
+                            <div class="tile">
+                                <span>Description</span>
+                                <span>{{ sales.data.Arktx }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Quantity</span>
+                                <span>{{ sales.data.Kwmeng + " " + sales.data.Vrkme }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Price</span>
+                                <span>{{ sales.data.Netwr | currency : sales.data.Waerk}} </span>
+                            </div>
+                            <div class="tile">
+                                <span>Processing Status</span>
+                                <span>{{ getStatus(sales.data.Gbstk) }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Delivery Status</span>
+                                <span>{{ getStatus(sales.data.Lfgsk) }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Delivery date</span>
+                                <span>{{ sales.data.VdatuAna }}</span>
+                            </div>
+                        </div>
+                        <div class="hide-block" [ngClass]="{'expanded' : sales.expanded}">
+                            <div class="tile">
+                                <span>Document Number</span>
+                                <span>{{ sales.data.Vbeln }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Item Number</span>
+                                <span>{{ sales.data.Posnr }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Created date</span>
+                                <span>{{ sales.data.Erdat }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Material Number</span>
+                                <span>{{ sales.data.Posnr }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Purchase Order</span>
+                                <span>{{ sales.data.Bstnk }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Division</span>
+                                <span>{{ sales.data.Spart }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Storage Location</span>
+                                <span>{{ sales.data.Lgort }}</span>
+                            </div>
+                        </div>
+                        <button (click)="onExpand(sales)">{{ sales.expanded ? "Close" : "Collapse" }}</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
