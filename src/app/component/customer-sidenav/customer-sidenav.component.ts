@@ -19,6 +19,8 @@ export class CustomerSidenavComponent {
   secondaryColor = "#0075ff";
 
   onLogout() {
+    localStorage.removeItem("customer-id");
+    localStorage.removeItem("customer-token");
     this.router.navigate(['/']);
   }
 

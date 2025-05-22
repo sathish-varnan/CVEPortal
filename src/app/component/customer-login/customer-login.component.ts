@@ -41,16 +41,17 @@ export class CustomerLoginComponent {
   });
 
   onClick() {
-    let name = this.userDetails.value.id ?? '';
+    let id = (this.userDetails.value.id ?? '').padStart(10, '0');
     let password = this.userDetails.value.password ?? '';
     this.http.post<CustomerLoginResponse>('http://localhost:3000/customer/login', {
-      id: name,
+      id: id,
       password: password
     }).subscribe({
         next: (response) => {
           console.log(response);
           if (response.status === 'S') {
-            localStorage.setItem("customer-id", name);
+            localStorage.setItem("customer-id", id);
+            localStorage.setItem("customer-token", response.JWToken);
             this.router.navigate(['/customer/profile']);
           } else {
             alert('Check your credentials!!');

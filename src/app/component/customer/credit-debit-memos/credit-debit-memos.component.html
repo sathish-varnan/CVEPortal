@@ -1,1 +1,81 @@
-<p>credit-debit-memos works!</p>
+<div class="credit-container">
+    <h1 class="credit-title">credit data : {{ data().length }} entries found</h1>
+    <div class="card-container">
+        <div class="card-list">
+            @for (credit of data(); track credit.id) {
+                <div class="credit-card">
+                        <div class="label">
+                            {{ credit.label == "G2" ? "Credit" : "Debit"}}
+                        </div>
+                    <div class="credit-card-content">
+                        <div class="show-block">
+                            <div class="tile">
+                                <span>Description</span>
+                                <span>{{ credit.data.Arktx }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Organization</span>
+                                <span>{{ credit.data.Vkorg }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Price</span>
+                                <span>{{ credit.data.Netwr | currency : credit.data.Waerk}} </span>
+                            </div>
+                            <div class="tile">
+                                <span>Pricing procedure</span>
+                                <span>{{ credit.data.Kalsm }}</span>
+                            </div>
+                            <div class="tile">
+                                <span># Document conditions</span>
+                                <span>{{ credit.data.Knumv }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Document Number</span>
+                                <span>{{ credit.data.Vbeln }}</span>
+                            </div>
+                        </div>
+                        <div class="hide-block" [ngClass]="{'expanded' : credit.expanded}">
+                            <div class="tile">
+                                <span>Date created</span>
+                                <span>{{ credit.data.Erdat }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>time of creation</span>
+                                <span>{{ credit.data.Erzet }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Item Number</span>
+                                <span>{{ credit.data.Posnr }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Created date</span>
+                                <span>{{ credit.data.Erdat }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Shipping condition</span>
+                                <span>{{ credit.data.Vsbed }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Billing date</span>
+                                <span>{{ credit.data.Fkdat }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Exchange rate</span>
+                                <span>{{ credit.data.Kurrf }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Purchase Order</span>
+                                <span>{{ credit.data.BstnkF}}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Item number</span>
+                                <span>{{ credit.data.Posnr}}</span>
+                            </div>
+                        </div>
+                        <button (click)="onExpand(credit)">{{ credit.expanded ? "Collapse" : "Expand" }}</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

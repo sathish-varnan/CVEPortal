@@ -24,6 +24,7 @@ import { RequestForQuotationComponent } from './component/vendor/request-for-quo
 import { CreditAndDebitMemosComponent } from './component/vendor/credit-and-debit-memos/credit-and-debit-memos.component';
 import { PaymentsAndAgingComponent as Payment } from './component/vendor/payments-and-aging/payments-and-aging.component';
 import { InvoiceDetailsComponent as Invoice } from './component/vendor/invoice-details/invoice-details.component';
+import { authGuard } from './utils/auth.guard';
 
 export const routes: Routes = [
   {
@@ -38,6 +39,7 @@ export const routes: Routes = [
   {
     path: 'customer',
     component: CustomerComponent,
+    canActivateChild: [authGuard],
     children: [
       {
         path: 'profile',

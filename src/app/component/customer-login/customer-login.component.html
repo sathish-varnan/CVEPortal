@@ -1,14 +1,15 @@
 <section class="main-container">
   <h1 class="card-title">Customer Portal</h1>
+  <span class="material-icons-outlined escape" (click)="this.router.navigate(['/'])">exit_to_app</span>
   <form class="form-card" [formGroup]="userDetails" (ngSubmit)=onClick()>
     <img src="person.jpg" alt="user">
     <div class="form-card-detail">
     <div class="form-card-entry">
-      <label for="id" class="form-card-label">Enter your name</label>
-      <input placeholder="Name" formControlName="id" class="form-card-input">
+      <label for="id" class="form-card-label">Customer ID</label>
+      <input placeholder="ID" formControlName="id" class="form-card-input">
     </div>
     <div class="form-card-entry">
-      <label for="password" class="form-card-label">Enter your password</label>
+      <label for="password" class="form-card-label">Customer password</label>
       <div class="password-input">
         <input [type]="passwordInputType()" formControlName="password" placeholder="password" class="form-card-input"/>
         <span class="material-icons-outlined icon" (click)="onEyeClick()">{{ eyeIcon() }}</span>

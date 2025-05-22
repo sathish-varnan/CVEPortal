@@ -21,7 +21,7 @@ export class CustomerProfileComponent implements OnInit {
     phone: '',
 });
   ngOnInit(): void {
-    const id = localStorage.getItem("customer-id") ?? '0000000001';
+    const id = localStorage.getItem("customer-id") ?? '';
     this.http.post<{ details: CustomerProfileData }>('http://localhost:3000/customer/profile', {
           id: id
         }).subscribe({

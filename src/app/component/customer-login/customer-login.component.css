@@ -4,6 +4,19 @@
     font-weight:400;
 }
 
+.escape {
+    color: white;
+    position: absolute;
+    left: 80rem;
+    top: 2.5rem;
+    font-size: xx-large;
+    cursor: pointer;
+}
+
+.escape:hover {
+    color: var(--secondary-color);
+}
+
 .form-card {
     width: 33.33%;
     height: 65%;

@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { CustomerSidenavComponent } from '../../component/customer-sidenav/customer-sidenav.component';
 

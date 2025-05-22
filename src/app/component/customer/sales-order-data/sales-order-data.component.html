@@ -1,5 +1,5 @@
 <div class="sales-container">
-    <h1 class="sales-title">Sales Order data : {{ data().length }} entries found</h1>
+    <h1 class="sales-title">Sales Order : {{ data().length }} entries found</h1>
     <div class="card-container">
         <div class="card-list">
             @for (sales of data(); track sales.id) {
@@ -61,7 +61,7 @@
                                 <span>{{ sales.data.Lgort }}</span>
                             </div>
                         </div>
-                        <button (click)="onExpand(sales)">{{ sales.expanded ? "Close" : "Collapse" }}</button>
+                        <button (click)="onExpand(sales)">{{ sales.expanded ? "Collapse" : "Close" }}</button>
                     </div>
                 </div>
             }

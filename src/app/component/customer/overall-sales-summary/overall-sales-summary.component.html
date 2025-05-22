@@ -1,1 +1,54 @@
-<p>overall-sales-summary works!</p>
+<div class="summary-container">
+    <h1 class="summary-title">summary data : {{ data().length }} entries found</h1>
+    <div class="card-container">
+        <div class="card-list">
+            @for (summary of data(); track summary.id) {
+                <div class="summary-card">
+                    <div class="summary-card-content">
+                        <div class="show-block">
+                            <div class="tile">
+                                <span>Description</span>
+                                <span>{{ summary.data.Arktx }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Quantity</span>
+                                <span>{{ summary.data.Kwmeng + " " + summary.data.Vrkme }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Price</span>
+                                <span>{{ summary.data.Netwr | currency : summary.data.Waerk}} </span>
+                            </div>
+                            <div class="tile">
+                                <span>Organization</span>
+                                <span>{{ summary.data.Vkorg }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Item Category</span>
+                                <span>{{ summary.data.Pstyv }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Created date</span>
+                                <span>{{ summary.data.Audat }}</span>
+                            </div>
+                        </div>
+                        <div class="hide-block" [ngClass]="{'expanded' : summary.expanded}">
+                            <div class="tile">
+                                <span>Distribution Channel</span>
+                                <span>{{ summary.data.Vtweg }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Division</span>
+                                <span>{{ summary.data.Spart }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Purchase Order</span>
+                                <span>{{ summary.data.Bstnk }}</span>
+                            </div>
+                        </div>
+                        <button (click)="onExpand(summary)">{{ summary.expanded ? "Collapse" : "Expand" }}</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
