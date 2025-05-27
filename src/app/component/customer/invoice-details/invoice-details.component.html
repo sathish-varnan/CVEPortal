@@ -1,5 +1,6 @@
+<div class="container">
 <div class="invoice-container">
-    <h1 class="invoice-title">invoice data : {{ data().length }} entries found</h1>
+    <h1 class="invoice-title">Invoice data : {{ data().length }} entries found</h1>
     <div class="card-container">
         <div class="card-list">
             @for (invoice of data(); track invoice.id) {
@@ -40,9 +41,25 @@
                                 <span>Division</span>
                                 <span>{{ invoice.data.Spart }}</span>
                             </div>
-                            <div class="tile">
+                            <!-- <div class="tile">
                                 <span>Purchase Order</span>
                                 <span>{{ invoice.data.Xblnr }}</span>
+                            </div> -->
+                            <div class="tile">
+                                <span>Bill type</span>
+                                <span>{{ invoice.data.Fkart }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Payer</span>
+                                <span>{{ invoice.data.Kunrg }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Bill date</span>
+                                <span>{{ invoice.data.Fkdat }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Billing item</span>
+                                <span>{{ invoice.data.Posnr }}</span>
                             </div>
                         </div>
                         <div class="button-pair">
@@ -52,6 +69,31 @@
                     </div>
                 </div>
             }
+        </div>
+    </div>
+</div>
+<div class="filter-container">
+        <div class="filter-tile">
+            <label for="description">Description</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="description" id="" [formControl]="description" placeholder="enter description">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="itemtype">Organization</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="description" id="" [formControl]="organisation" placeholder="enter type">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="date">Sort by created date</label>
+            <select [formControl]="createdDate" name="date">
+                <option value="">--None--</option>
+                <option value="ascending">Ascending</option>
+                <option value="descending">Descending</option>
+            </select>
         </div>
     </div>
 </div>

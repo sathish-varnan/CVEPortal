@@ -1,5 +1,6 @@
+<div class="container">
 <div class="payment-container">
-    <h1 class="payment-title">payment data : {{ data().length }} entries found</h1>
+    <h1 class="payment-title">Payment and Aging : {{ data().length }} entries found</h1>
     <div class="card-container">
         <div class="card-list">
             @for (payment of data(); track payment.id) {
@@ -38,7 +39,7 @@
                             </div>
                             <div class="tile">
                                 <span>Financial year</span>
-                                <span>{{ payment.data.Monat }}</span>
+                                <span>{{ payment.data.Gjahr }}</span>
                             </div>
                             <div class="tile">
                                 <span>Company Code</span>
@@ -53,6 +54,31 @@
                     </div>
                 </div>
             }
+        </div>
+    </div>
+</div>
+<div class="filter-container">
+        <div class="filter-tile">
+            <label for="description">Financial year</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="description" id="" [formControl]="fiYear" placeholder="Enter financial year">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="itemtype">Company code</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="description" id="" [formControl]="company" placeholder="Enter company code">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="date">Sort by deadline</label>
+            <select [formControl]="deadlineDate" name="date">
+                <option value="">--None--</option>
+                <option value="ascending">Ascending</option>
+                <option value="descending">Descending</option>
+            </select>
         </div>
     </div>
 </div>

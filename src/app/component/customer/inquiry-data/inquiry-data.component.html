@@ -13,7 +13,7 @@
                                 </div>
                                 <div class="tile">
                                     <span>Quantity</span>
-                                    <span>{{ inquiry.data.Kwmeng + " " + inquiry.data.Vrkme }}</span>
+                                    <span>{{ inquiry.data.Kwmeng }}</span>
                                 </div>
                                 <div class="tile">
                                     <span>Price</span>
@@ -24,8 +24,8 @@
                                     <span>{{ inquiry.data.Vbeln }}</span>
                                 </div>
                                 <div class="tile">
-                                    <span>Item Number</span>
-                                    <span>{{ inquiry.data.Posnr }}</span>
+                                    <span>Quantity unit</span>
+                                    <span>{{ inquiry.data.Vrkme }}</span>
                                 </div>
                                 <div class="tile">
                                     <span>Created date</span>
@@ -33,17 +33,29 @@
                                 </div>
                             </div>
                             <div class="hide-block" [ngClass]="{'expanded' : inquiry.expanded}">
-                                <div class="tile">
+                                <!-- <div class="tile">
                                     <span>Item type</span>
                                     <span>{{ inquiry.data.Posar }}</span>
+                                </div> -->
+                                <div class="tile">
+                                    <span>Item Number</span>
+                                    <span>{{ inquiry.data.Posnr }}</span>
                                 </div>
                                 <div class="tile">
                                     <span>Valid from</span>
-                                    <span>{{ inquiry.data.validFrom?.toDateString() }}</span>
+                                    <span>{{ useFormatDate(inquiry.data.validFrom) }}</span>
                                 </div>
                                 <div class="tile">
                                     <span>Valid to</span>
-                                    <span>{{ inquiry.data.validTo?.toDateString() }}</span>
+                                    <span>{{ useFormatDate(inquiry.data.validTo) }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Sold to party</span>
+                                    <span>{{ inquiry.data.Kunnr }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Sales Document type</span>
+                                    <span>{{ inquiry.data.Auart }}</span>
                                 </div>
                             </div>
                             <button (click)="onExpand(inquiry)">{{ inquiry.expanded ? "Collapse" : "Expand" }}</button>

@@ -16,4 +16,7 @@ export default interface SalesOrderData {
       Gbstk: string;
       Lfgsk: string;
       Lgort: string;
+      deliveryStatus: string;
+      processingStatus?: string;
+      deliveryDate?: Date
 };

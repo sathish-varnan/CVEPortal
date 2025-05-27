@@ -15,4 +15,5 @@ export default interface InvoiceData {
     "Arktx": string,
     "Fkimg": string,
     "Vrkme": string,
+    createdDate: Date,
 };

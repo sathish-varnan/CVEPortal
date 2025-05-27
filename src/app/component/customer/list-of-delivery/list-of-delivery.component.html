@@ -1,3 +1,4 @@
+<div class="container">
 <div class="delivery-container">
     <h1 class="delivery-title">List of Delivery : {{ data().length }} entries found</h1>
     <div class="card-container">
@@ -12,7 +13,7 @@
                             </div>
                             <div class="tile">
                                 <span>Quantity</span>
-                                <span>{{ delivery.data.Lfimg }} {{ delivery.data.Vrkme }}</span>
+                                <span>{{ delivery.data.Lfimg }}</span>
                             </div>
                             <div class="tile">
                                 <span>Price</span>
@@ -20,7 +21,11 @@
                             </div>
                             <div class="tile">
                                 <span>Delivery Status</span>
-                                <span>{{ getStatus(delivery.data.Bestk) }}</span>
+                                <span>{{ delivery.data.Bestk }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Quantity unit</span>
+                                <span>{{ delivery.data.Vrkme }}</span>
                             </div>
                             <div class="tile">
                                 <span>Delivery date</span>
@@ -38,7 +43,7 @@
                             </div>
                             <div class="tile">
                                 <span>Material Number</span>
-                                <span>{{ delivery.data.Posnr }}</span>
+                                <span>{{ delivery.data.Matnr }}</span>
                             </div>
                             <div class="tile">
                                 <span>Purchase Order</span>
@@ -53,10 +58,44 @@
                                 <span>{{ delivery.data.Lgort }}</span>
                             </div>
                         </div>
-                        <button (click)="onExpand(delivery)">{{ delivery.expanded ? "Collapse" : "Close" }}</button>
+                        <button (click)="onExpand(delivery)">{{ delivery.expanded ? "Collapse" : "Expand" }}</button>
                     </div>
                 </div>
             }
+        </div>
+    </div>
+</div>
+<div class="filter-container">
+        <div class="filter-tile">
+            <label for="description">Description</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="description" id="" [formControl]="description" placeholder="Enter description">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="itemtype">Plant</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="description" id="" [formControl]="plant" placeholder="Enter plant name">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="date">Sort by delivery date</label>
+            <select [formControl]="deliveryDate" name="date">
+                <option value="">--None--</option>
+                <option value="ascending">Ascending</option>
+                <option value="descending">Descending</option>
+            </select>
+        </div>
+        <div class="filter-tile">
+            <label for="date">Filter by delivery status</label>
+            <select [formControl]="deliveryStatus" name="date">
+                <option value="">--None--</option>
+                <option value="progress">In Progress</option>
+                <option value="complete">Completed</option>
+                <option value="not">Not Started</option>
+            </select>
         </div>
     </div>
 </div>

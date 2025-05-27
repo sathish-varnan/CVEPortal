@@ -17,4 +17,5 @@ export default interface Payment {
     "Blart": string;
     "Monat": string;
     "RemainingDays": string;
+    "deadlineDate"?: Date; 
 };

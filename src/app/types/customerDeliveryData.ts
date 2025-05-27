@@ -13,5 +13,6 @@ export default interface deliveryData {
     Lgort: string,
     Bestk: string,
     Vstel: string,
-    Werks: string
+    Werks: string,
+    deliveryDate?: Date,
 };

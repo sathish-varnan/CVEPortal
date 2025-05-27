@@ -1,12 +1,13 @@
+<div class="container">
 <div class="credit-container">
-    <h1 class="credit-title">credit data : {{ data().length }} entries found</h1>
+    <h1 class="credit-title">Credit/Debit memo : {{ data().length }} entries found</h1>
     <div class="card-container">
         <div class="card-list">
             @for (credit of data(); track credit.id) {
                 <div class="credit-card">
                         <div class="label-container">
                             <div class="label">
-                                {{ credit.label == "G2" ? "Credit" : "Debit"}}
+                                {{ credit.label.charAt(0).toUpperCase() + credit.label.slice(1)}}
                             </div>
                         </div>
                     <div class="credit-card-content">
@@ -28,8 +29,8 @@
                                 <span>{{ credit.data.Kalsm }}</span>
                             </div>
                             <div class="tile">
-                                <span># Document conditions</span>
-                                <span>{{ credit.data.Knumv }}</span>
+                                <span>Billing date</span>
+                                <span>{{ credit.data.Fkdat }}</span>
                             </div>
                             <div class="tile">
                                 <span>Document Number</span>
@@ -37,6 +38,10 @@
                             </div>
                         </div>
                         <div class="hide-block" [ngClass]="{'expanded' : credit.expanded}">
+                            <div class="tile">
+                                <span># Document conditions</span>
+                                <span>{{ credit.data.Knumv }}</span>
+                            </div>
                             <div class="tile">
                                 <span>Date created</span>
                                 <span>{{ credit.data.Erdat }}</span>
@@ -50,34 +55,47 @@
                                 <span>{{ credit.data.Posnr }}</span>
                             </div>
                             <div class="tile">
-                                <span>Created date</span>
-                                <span>{{ credit.data.Erdat }}</span>
-                            </div>
-                            <div class="tile">
                                 <span>Shipping condition</span>
                                 <span>{{ credit.data.Vsbed }}</span>
                             </div>
-                            <div class="tile">
-                                <span>Billing date</span>
-                                <span>{{ credit.data.Fkdat }}</span>
-                            </div>
-                            <div class="tile">
+                            <!-- <div class="tile">
                                 <span>Exchange rate</span>
                                 <span>{{ credit.data.Kurrf }}</span>
-                            </div>
-                            <div class="tile">
+                            </div> -->
+                            <!-- <div class="tile">
                                 <span>Purchase Order</span>
                                 <span>{{ credit.data.BstnkF}}</span>
-                            </div>
-                            <div class="tile">
-                                <span>Item number</span>
-                                <span>{{ credit.data.Posnr}}</span>
-                            </div>
+                            </div> -->
                         </div>
                         <button (click)="onExpand(credit)">{{ credit.expanded ? "Collapse" : "Expand" }}</button>
                     </div>
                 </div>
             }
+        </div>
+    </div>
+</div>
+<div class="filter-container">
+        <div class="filter-tile">
+            <label for="description">Description</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="description" id="" [formControl]="description" placeholder="Enter description">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="itemtype">Organization</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="description" id="" [formControl]="organization" placeholder="Enter org. name">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="date">Filter by</label>
+            <select [formControl]="label" name="date">
+                <option value="">--None--</option>
+                <option value="credit">Credit</option>
+                <option value="debit">Debit</option>
+            </select>
         </div>
     </div>
 </div>

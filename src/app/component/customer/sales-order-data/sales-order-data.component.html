@@ -1,3 +1,4 @@
+<div class="container">
 <div class="sales-container">
     <h1 class="sales-title">Sales Order : {{ data().length }} entries found</h1>
     <div class="card-container">
@@ -12,19 +13,19 @@
                             </div>
                             <div class="tile">
                                 <span>Quantity</span>
-                                <span>{{ sales.data.Kwmeng + " " + sales.data.Vrkme }}</span>
+                                <span>{{ sales.data.Kwmeng }}</span>
                             </div>
                             <div class="tile">
                                 <span>Price</span>
                                 <span>{{ sales.data.Netwr | currency : sales.data.Waerk}} </span>
                             </div>
                             <div class="tile">
-                                <span>Processing Status</span>
-                                <span>{{ getStatus(sales.data.Gbstk) }}</span>
-                            </div>
-                            <div class="tile">
                                 <span>Delivery Status</span>
                                 <span>{{ getStatus(sales.data.Lfgsk) }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Quantity</span>
+                                <span>{{ sales.data.Vrkme }}</span>
                             </div>
                             <div class="tile">
                                 <span>Delivery date</span>
@@ -45,6 +46,10 @@
                                 <span>{{ sales.data.Erdat }}</span>
                             </div>
                             <div class="tile">
+                                <span>Processing Status</span>
+                                <span>{{ getStatus(sales.data.Gbstk) }}</span>
+                            </div>
+                            <div class="tile">
                                 <span>Material Number</span>
                                 <span>{{ sales.data.Posnr }}</span>
                             </div>
@@ -61,10 +66,37 @@
                                 <span>{{ sales.data.Lgort }}</span>
                             </div>
                         </div>
-                        <button (click)="onExpand(sales)">{{ sales.expanded ? "Collapse" : "Close" }}</button>
+                        <button (click)="onExpand(sales)">{{ sales.expanded ? "Collapse" : "Expand" }}</button>
                     </div>
                 </div>
             }
+        </div>
+    </div>
+</div>
+<div class="filter-container">
+        <div class="filter-tile">
+            <label for="description">Description</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="description" id="" [formControl]="description" placeholder="Enter description">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="date">Sort by delivery date</label>
+            <select [formControl]="deliveryDate" name="date">
+                <option value="">--None--</option>
+                <option value="ascending">Ascending</option>
+                <option value="descending">Descending</option>
+            </select>
+        </div>
+        <div class="filter-tile">
+            <label for="date">Filter by delivery status</label>
+            <select [formControl]="deliveryStatus" name="date">
+                <option value="">--None--</option>
+                <option value="progress">In Progress</option>
+                <option value="complete">Completed</option>
+                <option value="not">Not Started</option>
+            </select>
         </div>
     </div>
 </div>

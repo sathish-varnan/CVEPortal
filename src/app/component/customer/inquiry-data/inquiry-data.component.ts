@@ -4,39 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { v4 as uuid } from "uuid";
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { capitalize, formatDate, formatDateToDDMMYYYY, removeZeros } from '../../../utils/util';
 
-// /******************DUMMY-START********************* */ 
-// const dummy: CustomerInquiryData = {
-//   Kunnr: '',
-//   Erdat: '19-01-2025',
-//   Auart: '',
-//   Angdt: '19-01-2025',
-//   Bnddt: '22-01-2025',
-//   Vbeln: '0001',
-//   Posnr: '0001',
-//   Netwr: '100',
-//   Waerk: 'INR',
-//   Arktx: 'Marie Gold',
-//   Posar: 'biscuit',
-//   Vrkme: 'Dozen',
-//   Kwmeng: '2',
-//   validFrom: new Date('2025-01-19'),
-//   validTo: new Date('2025-01-22')
-// };
-
-// const populateUsingDummies = (data: WritableSignal<Inquiry[]>, count: number) => {
-//   const dummies: Inquiry[] = [];
-//   for (let i = 0; i < count; i++) {
-//     dummies.push({
-//       id: uuid(),
-//       data: dummy,
-//       expanded: false
-//     });
-//   }
-//   data.set(dummies);
-// };
-
-// /*******************DUMMY-END*********************/
 interface Inquiry {
   id: string;
   data: CustomerInquiryData;
@@ -61,6 +30,10 @@ export class InquiryDataComponent implements OnInit {
   description = new FormControl('');
   date = new FormControl('');
   itemType = new FormControl('');
+
+  useFormatDate(date: Date | undefined): string {
+    return formatDate(date);
+  }
   
   // OnInit
   ngOnInit(): void {
@@ -116,8 +89,13 @@ export class InquiryDataComponent implements OnInit {
       }).subscribe({
         next: (response) => {
           const updatedInquiryData: Inquiry[] = response.data.map(item => {
-            item.validFrom = new Date(item.Angdt) ?? '';
-            item.validTo = new Date(item.Bnddt) ?? '';
+            item.validFrom = (new Date(item.Angdt).toDateString() == "Invalid Date") ? new Date() : new Date(item.Angdt);
+            item.validTo = (new Date(item.Bnddt).toDateString() == "Invalid Date") ? new Date() : new Date(item.Bnddt);
+            item.Erdat = formatDateToDDMMYYYY(item.Erdat);
+            item.Vbeln = removeZeros(item.Vbeln);
+            item.Posnr = removeZeros(item.Posnr);
+            item.Kunnr = removeZeros(item.Kunnr);
+            item.Arktx = capitalize(item.Arktx);
             return {
               id: uuid(),
               data: item,

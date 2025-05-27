@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { v4 as uuid } from "uuid";
 import { CommonModule } from '@angular/common';
 import InvoiceData from '../../../types/invoiceData';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { capitalize, formatDateToDDMMYYYY } from '../../../utils/util';
 
 interface Invoice {
   data: InvoiceData;
@@ -12,28 +14,80 @@ interface Invoice {
 
 @Component({
   selector: 'app-invoice-details',
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './invoice-details.component.html',
   styleUrl: './invoice-details.component.css'
 })
 export class InvoiceDetailsComponent implements OnInit {
 http = inject(HttpClient);
-  data = signal<Invoice[]>([]);
+BASE_DATA = signal<Invoice[]>([]);
+data = signal<Invoice[]>([]);
+description = new FormControl('');
+organisation = new FormControl('');
+createdDate = new FormControl('');
+
 
   ngOnInit(): void {
     const id = localStorage.getItem("customer-id") ?? '';
+    
+    /* Adding filters */
+    // Description
+    this.description.valueChanges.subscribe(value => {
+      const searchText = (value ?? '').toLowerCase();
+      const filteredItems = this.BASE_DATA()
+      .filter(item => item.data.Arktx.toLowerCase().includes(searchText.toLowerCase()));
+      this.data.set(filteredItems);
+    });
+    // Organisation
+    this.organisation.valueChanges.subscribe(value => {
+      const searchText = (value ?? '').toLowerCase();
+      const filteredItems = this.BASE_DATA()
+      .filter(item => item.data.Vkorg.toLowerCase().includes(searchText.toLowerCase()));
+      this.data.set(filteredItems);
+    });
+    // Dates
+    this.createdDate.valueChanges.subscribe(value => {
+      if (value === 'ascending') {
+        this.data.set(this.BASE_DATA().sort((a: Invoice, b: Invoice): number => {
+          if (a.data.createdDate !== undefined) {
+            return (a.data.createdDate.getTime() - b.data.createdDate.getTime()) as number;
+          }
+          return 0;
+        }));
+      } else if (value === 'descending') {
+        this.data.set(this.BASE_DATA().sort((a: Invoice, b: Invoice): number => {
+          if (a.data.createdDate !== undefined && b.data.createdDate !== undefined) {
+            return (b.data.createdDate.getTime() - a.data.createdDate.getTime()) as number;
+          }
+          return 0;
+        }));
+      } else {
+        this.data.set(this.BASE_DATA());
+      }
+    });
+    
     try {
       this.http.post<{ data: InvoiceData[]}>('http://localhost:3000/customer/invoice', {
         id: id
       }).subscribe({
         next: (response) => {
           const updatedInvoiceData: Invoice[] = response.data.map(item => {
+            item.createdDate = new Date(item.Erdat) ?? ``;
+            item.Matnr = item.Matnr.replace(/^0+/, '');
+            item.Spart = item.Spart.replace(/^0+/, '');
+            item.Kunrg = item.Kunrg.replace(/^0+/, '');
+            item.Posnr = item.Posnr.replace(/^0+/, '');
+            item.Vtweg = item.Vtweg.replace(/^0+/, '');
+            item.Erdat = formatDateToDDMMYYYY(item.Erdat);
+            item.Fkdat = formatDateToDDMMYYYY(item.Fkdat);
+            item.Arktx = capitalize(item.Arktx);
             return {
               id: uuid(),
               data: item,
               expanded: false,
             };
           })
+          this.BASE_DATA.set(updatedInvoiceData);
           this.data.set(updatedInvoiceData);
         },
         error: (err) => {

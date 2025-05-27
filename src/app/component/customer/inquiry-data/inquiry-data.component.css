@@ -13,9 +13,10 @@
 }
 
 .inquiry-title {
-    font-size: x-large;
+    font-size: xx-large;
     color: white;
-    margin-bottom: 1rem;
+    margin-bottom: 0.25rem;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .card-container {
@@ -106,6 +107,7 @@ button {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .filter-tile {
