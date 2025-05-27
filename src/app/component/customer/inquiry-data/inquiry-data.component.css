@@ -1,3 +1,9 @@
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
 .inquiry-container {
     width: 75%;
     height: calc(100vh - 10vh);
@@ -93,4 +99,43 @@ button {
     cursor: pointer;
     align-self: center;
     margin-top: 0.5rem;
+}
+
+.filter-container {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.filter-tile {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: larger;
+}
+
+.filter-tile > span {
+    display: flex;
+}
+
+.icon {
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+.filter-tile > span > input {
+    outline: none;
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+select {
+    outline: none;
+    border: 1px dashed var(--secondary-color);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+select > option {
+    background-color: var(--secondary-color);
+    color: white;
 }

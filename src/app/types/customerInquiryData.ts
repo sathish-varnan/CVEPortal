@@ -12,4 +12,6 @@ export default interface InquiryData {
     Posar: string;
     Vrkme: string;
     Kwmeng: string;
+    validFrom?: Date;
+    validTo?: Date;
 };

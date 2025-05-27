@@ -4,8 +4,10 @@
         <div class="card-list">
             @for (credit of data(); track credit.id) {
                 <div class="credit-card">
-                        <div class="label">
-                            {{ credit.label == "G2" ? "Credit" : "Debit"}}
+                        <div class="label-container">
+                            <div class="label">
+                                {{ credit.label == "G2" ? "Credit" : "Debit"}}
+                            </div>
                         </div>
                     <div class="credit-card-content">
                         <div class="show-block">

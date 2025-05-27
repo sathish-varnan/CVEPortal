@@ -1,5 +1,4 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import CustomerInquiryData from "../../../types/customerInquiryData";
 import { HttpClient } from '@angular/common/http';
 import { v4 as uuid } from "uuid";
 import { CommonModule } from '@angular/common';
@@ -17,7 +16,7 @@ interface Summary {
   templateUrl: './overall-sales-summary.component.html',
   styleUrl: './overall-sales-summary.component.css'
 })
-export class OverallSalesSummaryComponent {
+export class OverallSalesSummaryComponent implements OnInit {
   http = inject(HttpClient);
   data = signal<Summary[]>([]);
 

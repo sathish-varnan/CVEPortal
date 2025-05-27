@@ -34,16 +34,22 @@
     position: relative;
 }
 
-.label {
+.label-container {
     position: absolute;
     width: 100%;
-    text-align: end;
-    right: 2rem;
-    padding: 0.25rem;
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 5px;
+    /* background-color: aliceblue; */
+}
+
+.label {
+    position: relative;
+    margin-right: 1.5rem;
+    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    background-color: rgba(0, 0, 255, 0.3);
     color: var(--secondary-color);
-    background-color: aliceblue;
-    border-radius: 1rem;
-    backdrop-filter: b
+    border-radius: 0.25rem;
 }
 
 .credit-card:hover {

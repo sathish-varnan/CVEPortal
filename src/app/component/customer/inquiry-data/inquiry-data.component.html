@@ -1,54 +1,80 @@
-<div class="inquiry-container">
-    <h1 class="inquiry-title">Inquiry data : {{ data().length }} entries found</h1>
-    <div class="card-container">
-        <div class="card-list">
-            @for (inquiry of data(); track inquiry.id) {
-                <div class="inquiry-card">
-                    <div class="inquiry-card-content">
-                        <div class="show-block">
-                            <div class="tile">
-                                <span>Description</span>
-                                <span>{{ inquiry.data.Arktx }}</span>
+<div class="container">
+    <div class="inquiry-container">
+        <h1 class="inquiry-title">Inquiry data : {{ data().length }} entries found</h1>
+        <div class="card-container">
+            <div class="card-list">
+                @for (inquiry of data(); track inquiry.id) {
+                    <div class="inquiry-card">
+                        <div class="inquiry-card-content">
+                            <div class="show-block">
+                                <div class="tile">
+                                    <span>Description</span>
+                                    <span>{{ inquiry.data.Arktx }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Quantity</span>
+                                    <span>{{ inquiry.data.Kwmeng + " " + inquiry.data.Vrkme }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Price</span>
+                                    <span>{{ inquiry.data.Netwr | currency : inquiry.data.Waerk}} </span>
+                                </div>
+                                <div class="tile">
+                                    <span>Document Number</span>
+                                    <span>{{ inquiry.data.Vbeln }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Item Number</span>
+                                    <span>{{ inquiry.data.Posnr }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Created date</span>
+                                    <span>{{ inquiry.data.Erdat }}</span>
+                                </div>
                             </div>
-                            <div class="tile">
-                                <span>Quantity</span>
-                                <span>{{ inquiry.data.Kwmeng + " " + inquiry.data.Vrkme }}</span>
+                            <div class="hide-block" [ngClass]="{'expanded' : inquiry.expanded}">
+                                <div class="tile">
+                                    <span>Item type</span>
+                                    <span>{{ inquiry.data.Posar }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Valid from</span>
+                                    <span>{{ inquiry.data.validFrom?.toDateString() }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Valid to</span>
+                                    <span>{{ inquiry.data.validTo?.toDateString() }}</span>
+                                </div>
                             </div>
-                            <div class="tile">
-                                <span>Price</span>
-                                <span>{{ inquiry.data.Netwr | currency : inquiry.data.Waerk}} </span>
-                            </div>
-                            <div class="tile">
-                                <span>Document Number</span>
-                                <span>{{ inquiry.data.Vbeln }}</span>
-                            </div>
-                            <div class="tile">
-                                <span>Item Number</span>
-                                <span>{{ inquiry.data.Posnr }}</span>
-                            </div>
-                            <div class="tile">
-                                <span>Created date</span>
-                                <span>{{ inquiry.data.Erdat }}</span>
-                            </div>
+                            <button (click)="onExpand(inquiry)">{{ inquiry.expanded ? "Collapse" : "Expand" }}</button>
                         </div>
-                        <div class="hide-block" [ngClass]="{'expanded' : inquiry.expanded}">
-                            <div class="tile">
-                                <span>Item type</span>
-                                <span>{{ inquiry.data.Posar }}</span>
-                            </div>
-                            <div class="tile">
-                                <span>Valid from</span>
-                                <span>{{ inquiry.data.Angdt }}</span>
-                            </div>
-                            <div class="tile">
-                                <span>Valid to</span>
-                                <span>{{ inquiry.data.Bnddt }}</span>
-                            </div>
-                        </div>
-                        <button (click)="onExpand(inquiry)">{{ inquiry.expanded ? "Collapse" : "Expand" }}</button>
                     </div>
-                </div>
-            }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="filter-container">
+        <div class="filter-tile">
+            <label for="description">Description</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="description" id="" [formControl]="description" placeholder="enter description">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="itemtype">Item type</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="description" id="" [formControl]="itemType" placeholder="enter type">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="date">Sort by</label>
+            <select [formControl]="date" name="date">
+                <option value="">--None--</option>
+                <option value="validFrom">Valid from</option>
+                <option value="validTo">Valid to</option>
+            </select>
         </div>
     </div>
 </div>

@@ -38,9 +38,36 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
     color: var(--secondary-color);
     > button {
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
     }
+}
+
+.back-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.back-container > button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25rem;
+    cursor: pointer;
+}
+
+.back-container > button > span:nth-child(2) {
+    color: var(--secondary-color);
+    font-size: large;
+}
+
+.back-container > button > span:nth-child(1) {
+    color: var(--secondary-color);
+    font-size: large;
 }

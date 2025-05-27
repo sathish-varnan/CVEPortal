@@ -1,1 +1,58 @@
-<p>payments-and-aging works!</p>
+<div class="payment-container">
+    <h1 class="payment-title">payment data : {{ data().length }} entries found</h1>
+    <div class="card-container">
+        <div class="card-list">
+            @for (payment of data(); track payment.id) {
+                <div class="payment-card">
+                    <div class="payment-card-content">
+                        <div class="show-block">
+                            <div class="tile">
+                                <span>Customer Number</span>
+                                <span>{{ payment.data.Kunnr }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Document Number</span>
+                                <span>{{ payment.data.Augbl }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Date</span>
+                                <span>{{ payment.data.Bldat }} </span>
+                            </div>
+                            <div class="tile">
+                                <span>Price</span>
+                                <span>{{ payment.data.Wrbtr | currency: payment.data.Waers }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Deadline</span>
+                                <span>{{ payment.data.Zfbdt }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Payment aging</span>
+                                <span>{{ payment.data.RemainingDays }}</span>
+                            </div>
+                        </div>
+                        <div class="hide-block" [ngClass]="{'expanded' : payment.expanded}">
+                            <div class="tile">
+                                <span>Tax Code</span>
+                                <span>{{ payment.data.Mwskz }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Financial year</span>
+                                <span>{{ payment.data.Monat }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Company Code</span>
+                                <span>{{ payment.data.Bukrs }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Item Line</span>
+                                <span>{{ payment.data.Buzei }}</span>
+                            </div>
+                        </div>
+                        <button (click)="onExpand(payment)">{{ payment.expanded ? "Collapse" : "Expand" }}</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

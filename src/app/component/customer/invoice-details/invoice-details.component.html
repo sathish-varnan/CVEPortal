@@ -1,1 +1,57 @@
-<p>invoice-details works!</p>
+<div class="invoice-container">
+    <h1 class="invoice-title">invoice data : {{ data().length }} entries found</h1>
+    <div class="card-container">
+        <div class="card-list">
+            @for (invoice of data(); track invoice.id) {
+                <div class="invoice-card">
+                    <div class="invoice-card-content">
+                        <div class="show-block">
+                            <div class="tile">
+                                <span>Description</span>
+                                <span>{{ invoice.data.Arktx }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Quantity</span>
+                                <span>{{ invoice.data.Fkimg+ " " + invoice.data.Vrkme }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Price</span>
+                                <span>{{ invoice.data.Netwr | currency : invoice.data.Waerk}} </span>
+                            </div>
+                            <div class="tile">
+                                <span>Organization</span>
+                                <span>{{ invoice.data.Vkorg }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Material Number</span>
+                                <span>{{ invoice.data.Matnr }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Created date</span>
+                                <span>{{ invoice.data.Erdat }}</span>
+                            </div>
+                        </div>
+                        <div class="hide-block" [ngClass]="{'expanded' : invoice.expanded}">
+                            <div class="tile">
+                                <span>Distribution Channel</span>
+                                <span>{{ invoice.data.Vtweg }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Division</span>
+                                <span>{{ invoice.data.Spart }}</span>
+                            </div>
+                            <div class="tile">
+                                <span>Purchase Order</span>
+                                <span>{{ invoice.data.Xblnr }}</span>
+                            </div>
+                        </div>
+                        <div class="button-pair">
+                            <button (click)="onExpand(invoice)">{{ invoice.expanded ? "Collapse" : "Expand" }}</button>
+                            <button (click)="onPrint(invoice)">Print 🖨️</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

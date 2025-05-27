@@ -1,5 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Location } from '@angular/common';
 
 export type MenuItem = {
   icon: string;
@@ -15,6 +16,7 @@ export type MenuItem = {
 })
 export class CustomerSidenavComponent {
   router = inject(Router);
+  routerNavigator = inject(Location);
   localPrimaryColor = "#1a1f38";
   secondaryColor = "#0075ff";
 
@@ -22,6 +24,10 @@ export class CustomerSidenavComponent {
     localStorage.removeItem("customer-id");
     localStorage.removeItem("customer-token");
     this.router.navigate(['/']);
+  }
+
+  onBack() {
+    this.routerNavigator.back();
   }
 
   menuItems = signal<MenuItem[]>([
