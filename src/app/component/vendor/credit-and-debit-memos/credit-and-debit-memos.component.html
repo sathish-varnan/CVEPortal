@@ -1,1 +1,111 @@
-<p>credit-and-debit-memos works!</p>
+<div class="container">
+    <div class="inquiry-container">
+        <h1 class="inquiry-title">Credit/Debit Memos : {{ data().length }} entries found</h1>
+        <div class="card-container">
+            <div class="card-list">
+                @for (memo of data(); track memo.id) {
+                    <div class="inquiry-card">
+                        <div class="inquiry-card-content">
+                            <div class="show-block">
+                                <div class="tile">
+                                    <span>Document Number</span>
+                                    <span>{{ memo.data.DocNumber }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Type</span>
+                                    <span>{{ memo.data.LabelName === 'S' ? 'Credit Memo' : 'Debit Memo' }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Amount</span>
+                                    <span>{{ memo.data.Amount }} {{ memo.data.DocCurr }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Posting Date</span>
+                                    <span>{{ memo.data.PostingDate }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Document Date</span>
+                                    <span>{{ memo.data.DocDate }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>GL Account</span>
+                                    <span>{{ memo.data.GlAccNo }}</span>
+                                </div>
+                            </div>
+                            <div class="hide-block" [ngClass]="{'expanded' : memo.expanded}">
+                                <div class="tile">
+                                    <span>Company Code</span>
+                                    <span>{{ memo.data.CompanyCode }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Financial Year</span>
+                                    <span>{{ memo.data.FinancialYr }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Item Number</span>
+                                    <span>{{ memo.data.ItemNumber }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Posting Key</span>
+                                    <span>{{ memo.data.PostingKey }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Clearing Document</span>
+                                    <span>{{ memo.data.ClrDocNumber || 'N/A' }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Special GL</span>
+                                    <span>{{ memo.data.SpclGlEdn || 'N/A' }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Created By</span>
+                                    <span>{{ memo.data.Name }}</span>
+                                </div>
+                            </div>
+                            <button (click)="onExpand(memo)">{{ memo.expanded ? "Collapse" : "Expand" }}</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="filter-container">
+        <div class="filter-tile">
+            <label for="docNumber">Document Number</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="docNumber" [formControl]="docNumber" placeholder="enter document number">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="memoType">Memo Type</label>
+            <select [formControl]="memoType" name="memoType">
+                <option value="">All Types</option>
+                <option value="S">Credit Memo</option>
+                <option value="H">Debit Memo</option>
+            </select>
+        </div>
+        <div class="filter-tile">
+            <label for="glAccount">GL Account</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="glAccount" [formControl]="glAccount" placeholder="enter GL account">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="amountRange">Amount Range</label>
+            <div style="display: flex; gap: 0.5rem;">
+                <input type="number" [formControl]="minAmount" placeholder="Min" style="width: 50%;">
+                <input type="number" [formControl]="maxAmount" placeholder="Max" style="width: 50%;">
+            </div>
+        </div>
+        <div class="filter-tile">
+            <label for="date">Sort by Date</label>
+            <select [formControl]="date" name="date">
+                <option value="">--None--</option>
+                <option value="asc">Oldest First</option>
+                <option value="desc">Newest First</option>
+            </select>
+        </div>
+    </div>
+</div>

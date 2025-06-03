@@ -1,1 +1,107 @@
-<p>goods-receipt works!</p>
+<div class="container">
+    <div class="inquiry-container">
+        <h1 class="inquiry-title">Goods Receipts : {{ data().length }} entries found</h1>
+        <div class="card-container">
+            <div class="card-list">
+                @for (receipt of data(); track receipt.id) {
+                    <div class="inquiry-card">
+                        <div class="inquiry-card-content">
+                            <div class="show-block">
+                                <div class="tile">
+                                    <span>Document Number</span>
+                                    <span>{{ receipt.data.DocNumber }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Posting Date</span>
+                                    <span>{{ receipt.data.PostDate }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Document Date</span>
+                                    <span>{{ receipt.data.DocDate }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Material Number</span>
+                                    <span>{{ receipt.data.MaterialNumber }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Quantity</span>
+                                    <span>{{ receipt.data.Quantity }} {{ receipt.data.Unit }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Plant</span>
+                                    <span>{{ receipt.data.Plant }}</span>
+                                </div>
+                            </div>
+                            <div class="hide-block" [ngClass]="{'expanded' : receipt.expanded}">
+                                <div class="tile">
+                                    <span>Document Year</span>
+                                    <span>{{ receipt.data.DocYear }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Document Type</span>
+                                    <span>{{ receipt.data.DocType }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Created By</span>
+                                    <span>{{ receipt.data.Name }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Item Number</span>
+                                    <span>{{ receipt.data.ItemNumber }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>PO Number</span>
+                                    <span>{{ receipt.data.PoNumber || 'N/A' }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>PO Item</span>
+                                    <span>{{ receipt.data.PoItem || 'N/A' }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Movement Type</span>
+                                    <span>{{ receipt.data.MovementType }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Storage Location</span>
+                                    <span>{{ receipt.data.StorageLoc }}</span>
+                                </div>
+                            </div>
+                            <button (click)="onExpand(receipt)">{{ receipt.expanded ? "Collapse" : "Expand" }}</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="filter-container">
+        <div class="filter-tile">
+            <label for="docNumber">Document Number</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="docNumber" [formControl]="docNumber" placeholder="enter document number">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="materialNumber">Material Number</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="materialNumber" [formControl]="materialNumber" placeholder="enter material number">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="poNumber">PO Number</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="poNumber" [formControl]="poNumber" placeholder="enter PO number">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="date">Sort by Date</label>
+            <select [formControl]="date" name="date">
+                <option value="">--None--</option>
+                <option value="asc">Oldest First</option>
+                <option value="desc">Newest First</option>
+            </select>
+        </div>
+    </div>
+</div>

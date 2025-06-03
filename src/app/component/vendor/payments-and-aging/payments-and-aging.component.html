@@ -1,0 +1,111 @@
+<div class="container">
+    <div class="inquiry-container">
+        <h1 class="inquiry-title">Payments & Aging : {{ data().length }} entries found</h1>
+        <div class="card-container">
+            <div class="card-list">
+                @for (payment of data(); track payment.id) {
+                    <div class="inquiry-card">
+                        <div class="inquiry-card-content">
+                            <div class="show-block">
+                                <div class="tile">
+                                    <span>Document Number</span>
+                                    <span>{{ payment.data.DocNumber }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Amount</span>
+                                    <span>{{ payment.data.Amount | currency : payment.data.CurrKey }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Posting Date</span>
+                                    <span>{{ payment.data.PostingDate }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Document Date</span>
+                                    <span>{{ payment.data.DocDate }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Document Type</span>
+                                    <span>{{ payment.data.DocType }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Financial Year</span>
+                                    <span>{{ payment.data.FinancialYr }}</span>
+                                </div>
+                            </div>
+                            <div class="hide-block" [ngClass]="{'expanded' : payment.expanded}">
+                                <div class="tile">
+                                    <span>Company Code</span>
+                                    <span>{{ payment.data.CompanyCode }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Creator</span>
+                                    <span>{{ payment.data.Creator }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Terms/Conditions</span>
+                                    <span>{{ payment.data.TermsCondt || 'N/A' }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Clearing Doc No</span>
+                                    <span>{{ payment.data.ClrDocNo || 'N/A' }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Reference Doc No</span>
+                                    <span>{{ payment.data.RefDocNo || 'N/A' }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Item Number</span>
+                                    <span>{{ payment.data.ItemNumber }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Supplier</span>
+                                    <span>{{ payment.data.Supplier || 'N/A' }}</span>
+                                </div>
+                            </div>
+                            <button (click)="onExpand(payment)">{{ payment.expanded ? "Collapse" : "Expand" }}</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="filter-container">
+        <div class="filter-tile">
+            <label for="docNumber">Document Number</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="docNumber" [formControl]="docNumber" placeholder="enter document number">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="docType">Document Type</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="docType" [formControl]="docType" placeholder="enter document type">
+            </span>
+        </div>
+        <!-- <div class="filter-tile">
+            <label for="amountRange">Amount Range</label>
+            <div style="display: flex; gap: 1rem;">
+                <input type="number" name="minAmount" [formControl]="minAmount" placeholder="min" style="flex: 1;">
+                <span style="color: white;">to</span>
+                <input type="number" name="maxAmount" [formControl]="maxAmount" placeholder="max" style="flex: 1;">
+            </div>
+        </div> -->
+        <div class="filter-tile">
+            <label for="date">Sort by Date</label>
+            <select [formControl]="date" name="date">
+                <option value="">--None--</option>
+                <option value="asc">Oldest First</option>
+                <option value="desc">Newest First</option>
+            </select>
+        </div>
+        <div class="filter-tile">
+            <label for="financialYear">Financial Year</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="financialYear" [formControl]="financialYear" placeholder="enter financial year">
+            </span>
+        </div>
+    </div>
+</div>

@@ -15,9 +15,16 @@
     <span class="icon-label ">{{ item.label }}</span>
   </a>
   }
-</div>
-<div class="logout-container">
-  <button (click)="onLogout()" class="cursor-pointer">
-    <span class="material-icons">logout</span>
-  </button>
+  <div class="back-container">
+    <button (click)="onBack()" class="cursor-pointer">
+      <span class="material-icons">arrow_back_ios</span>
+      <span>Back</span>
+    </button>
+  </div>
+  <div class="logout-container">
+    <button (click)="onLogout()" class="cursor-pointer">
+      <span class="material-icons">logout</span>
+      <span>Logout</span>
+    </button>
+  </div>
 </div>

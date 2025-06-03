@@ -1,1 +1,103 @@
-<p>purchase-order works!</p>
+<div class="container">
+    <div class="inquiry-container">
+        <h1 class="inquiry-title">Purchase Orders : {{ data().length }} entries found</h1>
+        <div class="card-container">
+            <div class="card-list">
+                @for (order of data(); track order.id) {
+                    <div class="inquiry-card">
+                        <div class="inquiry-card-content">
+                            <div class="show-block">
+                                <div class="tile">
+                                    <span>Document Number</span>
+                                    <span>{{ order.data.DocumentNumber }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Description</span>
+                                    <span>{{ order.data.Description }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Material Number</span>
+                                    <span>{{ order.data.MaterialNumber }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Quantity</span>
+                                    <span>{{ order.data.Quantity }} {{ order.data.MeasureUnit }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Price</span>
+                                    <span>{{ order.data.Price | currency : order.data.CurrencyKey }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Document Date</span>
+                                    <span>{{ order.data.DocumentDate }}</span>
+                                </div>
+                            </div>
+                            <div class="hide-block" [ngClass]="{'expanded' : order.expanded}">
+                                <div class="tile">
+                                    <span>Document Type</span>
+                                    <span>{{ order.data.DocumentType }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Purchasing Org</span>
+                                    <span>{{ order.data.PurchasingOrg }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Purchasing Group</span>
+                                    <span>{{ order.data.PurchasingGroup }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Item Number</span>
+                                    <span>{{ order.data.ItemNumber }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Plant</span>
+                                    <span>{{ order.data.Plant }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Item Category</span>
+                                    <span>{{ order.data.ItemCategory }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Created By</span>
+                                    <span>{{ order.data.CreatedBy }}</span>
+                                </div>
+                            </div>
+                            <button (click)="onExpand(order)">{{ order.expanded ? "Collapse" : "Expand" }}</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="filter-container">
+        <div class="filter-tile">
+            <label for="description">Description</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="description" [formControl]="description" placeholder="enter description">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="documentNumber">Document Number</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="documentNumber" [formControl]="documentNumber" placeholder="enter document number">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="materialNumber">Material Number</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="materialNumber" [formControl]="materialNumber" placeholder="enter material number">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="date">Sort by Date</label>
+            <select [formControl]="date" name="date">
+                <option value="">--None--</option>
+                <option value="asc">Oldest First</option>
+                <option value="desc">Newest First</option>
+            </select>
+        </div>
+    </div>
+</div>

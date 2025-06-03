@@ -1,1 +1,95 @@
-<p>invoice-details works!</p>
+<div class="container">
+  <div class="invoice-container">
+    <h1 class="invoice-title">Vendor Invoices : {{ data().length }} entries found</h1>
+    <div class="card-container">
+      <div class="card-list">
+        @for (invoice of data(); track invoice.id) {
+          <div class="invoice-card">
+            <div class="invoice-card-content">
+              <div class="show-block">
+                <div class="tile">
+                  <span>Document Number</span>
+                  <span>{{ invoice.data.DocNumber }}</span>
+                </div>
+                <div class="tile">
+                  <span>Amount</span>
+                  <span>{{ invoice.data.Amount | currency : invoice.data.CurrKey}}</span>
+                </div>
+                <div class="tile">
+                  <span>Document Date</span>
+                  <span>{{ invoice.data.DocDate }}</span>
+                </div>
+                <div class="tile">
+                  <span>Company Code</span>
+                  <span>{{ invoice.data.CompanyCode }}</span>
+                </div>
+                <div class="tile">
+                  <span>Material Number</span>
+                  <span>{{ invoice.data.MaterialNumber }}</span>
+                </div>
+                <div class="tile">
+                  <span>Quantity</span>
+                  <span>{{ invoice.data.Quantity + " " + invoice.data.Unit }}</span>
+                </div>
+              </div>
+              <div class="hide-block" [ngClass]="{'expanded' : invoice.expanded}">
+                <div class="tile">
+                  <span>Financial Year</span>
+                  <span>{{ invoice.data.FinancialYr }}</span>
+                </div>
+                <div class="tile">
+                  <span>Tax Amount</span>
+                  <span>{{ invoice.data.TaxAmount | currency : invoice.data.CurrKey}}</span>
+                </div>
+                <div class="tile">
+                  <span>Base Date</span>
+                  <span>{{ invoice.data.BaseDate }}</span>
+                </div>
+                <div class="tile">
+                  <span>Reference Doc</span>
+                  <span>{{ invoice.data.RefDocNumber || 'N/A' }}</span>
+                </div>
+                <div class="tile">
+                  <span>Plant</span>
+                  <span>{{ invoice.data.Plant }}</span>
+                </div>
+                <div class="tile">
+                  <span>Purchase Doc</span>
+                  <span>{{ invoice.data.PdocNumber }}</span>
+                </div>
+              </div>
+              <div class="button-pair">
+                <button (click)="onExpand(invoice)">{{ invoice.expanded ? "Collapse" : "Expand" }}</button>
+                <button (click)="onPrint(invoice)">Print 🖨️</button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="filter-container">
+    <div class="filter-tile">
+      <label for="description">Material Number</label>
+      <span>
+        <span class="material-icons icon">search</span>
+        <input type="text" name="description" [formControl]="description" placeholder="enter material number">
+      </span>
+    </div>
+    <div class="filter-tile">
+      <label for="company">Company Code</label>
+      <span>
+        <span class="material-icons icon">search</span>
+        <input type="text" name="company" [formControl]="companyCode" placeholder="enter company code">
+      </span>
+    </div>
+    <div class="filter-tile">
+      <label for="date">Sort by document date</label>
+      <select [formControl]="createdDate" name="date">
+        <option value="">--None--</option>
+        <option value="ascending">Ascending</option>
+        <option value="descending">Descending</option>
+      </select>
+    </div>
+  </div>
+</div>

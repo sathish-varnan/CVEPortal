@@ -1,1 +1,95 @@
-<p>request-for-quotation works!</p>
+<div class="container">
+    <div class="inquiry-container">
+        <h1 class="inquiry-title">Requests for Quotation : {{ data().length }} entries found</h1>
+        <div class="card-container">
+            <div class="card-list">
+                @for (rfq of data(); track rfq.id) {
+                    <div class="inquiry-card">
+                        <div class="inquiry-card-content">
+                            <div class="show-block">
+                                <div class="tile">
+                                    <span>Document Number</span>
+                                    <span>{{ rfq.data.Documentnumber }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Description</span>
+                                    <span>{{ rfq.data.Description }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Material Number</span>
+                                    <span>{{ rfq.data.Materialnumber }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Quantity</span>
+                                    <span>{{ rfq.data.Quantity }} {{ rfq.data.Measureunit }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Price</span>
+                                    <span>{{ rfq.data.Price | currency : rfq.data.Currencykey }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Document Date</span>
+                                    <span>{{ rfq.data.Documentdate }}</span>
+                                </div>
+                            </div>
+                            <div class="hide-block" [ngClass]="{'expanded' : rfq.expanded}">
+                                <div class="tile">
+                                    <span>Document Type</span>
+                                    <span>{{ rfq.data.Documenttype }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Purchasing Org</span>
+                                    <span>{{ rfq.data.Purchasingorg }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Purchasing Group</span>
+                                    <span>{{ rfq.data.Purchasinggroup }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Item Number</span>
+                                    <span>{{ rfq.data.Itemnumber }}</span>
+                                </div>
+                                <div class="tile">
+                                    <span>Created By</span>
+                                    <span>{{ rfq.data.Createdby }}</span>
+                                </div>
+                            </div>
+                            <button (click)="onExpand(rfq)">{{ rfq.expanded ? "Collapse" : "Expand" }}</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="filter-container">
+        <div class="filter-tile">
+            <label for="description">Description</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="description" [formControl]="description" placeholder="enter description">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="documentNumber">Document Number</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="documentNumber" [formControl]="documentNumber" placeholder="enter document number">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="materialNumber">Material Number</label>
+            <span>
+                <span class="material-icons icon">search</span>
+                <input type="text" name="materialNumber" [formControl]="materialNumber" placeholder="enter material number">
+            </span>
+        </div>
+        <div class="filter-tile">
+            <label for="date">Sort by Date</label>
+            <select [formControl]="date" name="date">
+                <option value="">--None--</option>
+                <option value="asc">Oldest First</option>
+                <option value="desc">Newest First</option>
+            </select>
+        </div>
+    </div>
+</div>

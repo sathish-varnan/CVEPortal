@@ -7,7 +7,7 @@ function formatDate(_date: Date | undefined) {
     return `${day}-${month}-${year}`;
 }
 
-function formatDateToDDMMYYYY(_dateString: string | undefined) {
+function formatDateToDDMMYYYY(_dateString: string | undefined | Date) {
   const dateString = _dateString ?? '';
   const date = new Date(dateString);
   const day = String(date.getDate()).padStart(2, '0');

@@ -6,7 +6,7 @@
 
 .invoice-container {
     width: 75%;
-    height: calc(100vh - 10vh);
+    height: calc(100vh - 12vh);
     padding: 2rem;
     display: flex;
     flex-direction: column;
