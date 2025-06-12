@@ -19,6 +19,7 @@ export class EmployeeSidenavComponent {
   secondaryColor = "#0075ff";
 
   onLogout() {
+    localStorage.removeItem("employee-id");
     this.router.navigate(['/']);
   }
 

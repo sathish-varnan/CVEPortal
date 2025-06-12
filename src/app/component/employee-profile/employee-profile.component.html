@@ -1,11 +1,11 @@
 <div class="customer-profile-container">
-  <h1>Hi, Sathish Varnan👋🏻</h1>
+  <h1>Hi, {{ profile.FirstName }}👋🏻</h1>
   <div class="card-container">
     <div class="profile-card">
       <img src="person.jpg" alt="user">
       <span class="detail-card">
-        <span>Sathish</span>
-        <span>Chennai, IN</span>
+        <span>{{ profile.FirstName }}</span>
+        <span>{{ profile.State || 'Tamil Nadu'}}, {{ profile.Country || 'IN' }}</span>
       </span>
     </div>
   </div>
@@ -16,27 +16,51 @@
       <div class="info-card">
         <div class="info-tile">
           <span class="font-light">Name</span>
-          <span>Sathish</span>
+          <span>{{ profile.LastName }}</span>
         </div>
         <div class="info-tile">
-          <span class="font-light">Customer ID</span>
-          <span>{{"1".toString().padStart(10, '0')}}</span>
+          <span class="font-light">Employee ID</span>
+          <span>{{ profile.EmpId }}</span>
         </div>
         <div class="info-tile">
-          <span class="font-light">City</span>
-          <span>Chennai</span>
+          <span class="font-light">State</span>
+          <span>{{ profile.State || 'TamilNadu' }}</span>
         </div>
         <div class="info-tile">
-          <span class="font-light">Postal code</span>
-          <span>600 063</span>
+          <span class="font-light">Country</span>
+          <span>{{ profile.Country || 'India'}}</span>
         </div>
         <div class="info-tile">
-          <span class="font-light">Landmark</span>
-          <span>Mudichur</span>
+          <span class="font-light">Martial Status</span>
+          <span>{{profile.MaritalStatus || 'Married'}}</span>
         </div>
         <div class="info-tile">
           <span class="font-light">Country Key</span>
-          <span>IN</span>
+          <span>{{ profile.Nationality || 'Indian' }}</span>
+        </div>
+        <div class="info-tile">
+          <span class="font-light">Company Name</span>
+          <span>{{ profile.CompanyName || 'Kaar Technologies' }}</span>
+        </div>
+        <div class="info-tile">
+          <span class="font-light">Date of birth</span>
+          <span>{{ profile.Dob }}</span>
+        </div>
+        <div class="info-tile">
+          <span class="font-light">NickName</span>
+          <span>{{ profile.NickName || 'Nickey' }}</span>
+        </div>
+        <div class="info-tile">
+          <span class="font-light">Cost Center</span>
+          <span>{{ profile.CostCenter || 'GE-XX-20XX' }}</span>
+        </div>
+        <div class="info-tile">
+          <span class="font-light">Gender</span>
+          <span>{{ profile.Gender == '2' ? 'Male' : 'Female' }}</span>
+        </div>
+        <div class="info-tile">
+          <span class="font-light">Job</span>
+          <span>{{ isAlpha(profile.Job) ? profile.Job : 'Analyst' }}</span>
         </div>
       </div>
   </div>

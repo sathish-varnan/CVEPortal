@@ -24,7 +24,7 @@ import { RequestForQuotationComponent } from './component/vendor/request-for-quo
 import { CreditAndDebitMemosComponent } from './component/vendor/credit-and-debit-memos/credit-and-debit-memos.component';
 import { PaymentsAndAgingComponent as Payment } from './component/vendor/payments-and-aging/payments-and-aging.component';
 import { InvoiceDetailsComponent as Invoice } from './component/vendor/invoice-details/invoice-details.component';
-import { authGuard } from './utils/auth.guard';
+import { authGuard, vendorAuthGuard, employeeAuthGuard } from './utils/auth.guard';
 
 export const routes: Routes = [
   {
@@ -82,6 +82,7 @@ export const routes: Routes = [
   {
     path: 'vendor',
     component: VendorComponent,
+    canActivateChild: [vendorAuthGuard],
     children: [
       {
         path: 'profile',
@@ -121,6 +122,7 @@ export const routes: Routes = [
   {
     path: 'employee',
     component: EmployeeComponent,
+    canActivateChild: [employeeAuthGuard],
     children: [
       {
         path: 'profile',

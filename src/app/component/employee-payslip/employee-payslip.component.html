@@ -1,1 +1,100 @@
-<p>employee-payslip works!</p>
+<!-- employee-payslip.component.html -->
+<div class="container">
+  <div class="invoice-container">
+    <h1 class="invoice-title">Payslip data : {{ data().length }} entries found</h1>
+    <div class="card-container">
+      <div class="card-list">
+        @for (payslip of data(); track payslip.EmpId) {
+          <div class="invoice-card">
+            <div class="invoice-card-content">
+              <div class="show-block">
+                <div class="tile">
+                  <span>Employee Name</span>
+                  <span>{{ payslip.Name }}</span>
+                </div>
+                <div class="tile">
+                  <span>Employee ID</span>
+                  <span>{{ payslip.EmpId }}</span>
+                </div>
+                <div class="tile">
+                  <span>Amount</span>
+                  <span>{{ payslip.Amount }} {{ payslip.CurrencyKey }}</span>
+                </div>
+                <div class="tile">
+                  <span>Company Code</span>
+                  <span>{{ payslip.CompanyCode }}</span>
+                </div>
+                <div class="tile">
+                  <span>Cost Center</span>
+                  <span>{{ payslip.CostCenter }}</span>
+                </div>
+                <div class="tile">
+                  <span>Date of Birth</span>
+                  <span>{{ payslip.Dob }}</span>
+                </div>
+              </div>
+              <div class="hide-block" [class.expanded]="payslip.expanded">
+                <div class="tile">
+                  <span>Position</span>
+                  <span>{{ payslip.Stell }}</span>
+                </div>
+                <div class="tile">
+                  <span>Gender</span>
+                  <span>{{ payslip.Gender === '1' ? 'Male' : 'Female' }}</span>
+                </div>
+                <div class="tile">
+                  <span>Nationality</span>
+                  <span>{{ payslip.Nationality }}</span>
+                </div>
+                <div class="tile">
+                  <span>Pay Scale Group</span>
+                  <span>{{ payslip.PsGroup }}</span>
+                </div>
+                <div class="tile">
+                  <span>Pay Scale Level</span>
+                  <span>{{ payslip.PsLevel }}</span>
+                </div>
+                <div class="tile">
+                  <span>Wage Type</span>
+                  <span>{{ payslip.WageType }}</span>
+                </div>
+                <div class="tile">
+                  <span>Working Hours</span>
+                  <span>{{ payslip.WorkingHours }}</span>
+                </div>
+              </div>
+              <div class="button-pair">
+                <button (click)="onExpand(payslip)">{{ payslip.expanded ? "Collapse" : "Expand" }}</button>
+                <button (click)="onPrint(payslip.EmpId)">Print 🖨️</button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="filter-container">
+    <div class="filter-tile">
+      <label for="name">Employee Name</label>
+      <span>
+        <span class="material-icons icon">search</span>
+        <input type="text" name="name" [formControl]="nameFilter" placeholder="enter name">
+      </span>
+    </div>
+    <div class="filter-tile">
+      <label for="costCenter">Cost Center</label>
+      <span>
+        <span class="material-icons icon">search</span>
+        <input type="text" name="costCenter" [formControl]="costCenterFilter" placeholder="enter cost center">
+      </span>
+    </div>
+    <div class="filter-tile">
+      <label for="date">Sort by Date of Birth</label>
+      <select [formControl]="dateSort" name="date">
+        <option value="">--None--</option>
+        <option value="ascending">Ascending</option>
+        <option value="descending">Descending</option>
+      </select>
+    </div>
+  </div>
+</div>

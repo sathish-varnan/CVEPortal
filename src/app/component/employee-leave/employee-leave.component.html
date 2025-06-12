@@ -1,1 +1,83 @@
-<p>employee-leave works!</p>
+<div class="container">
+  <div class="leave-container">
+    <h1 class="leave-title">Leave Requests : {{ data().length }} entries found</h1>
+    <div class="card-container">
+      <div class="card-list">
+        @for (leave of data(); track leave.id) {
+          <div class="leave-card">
+            <div class="leave-card-content">
+              <div class="show-block">
+                <div class="tile">
+                  <span>Leave Type</span>
+                  <span>{{ getLeaveTypeName(leave.data.LeaveType) }}</span>
+                </div>
+                <div class="tile">
+                  <span>Duration</span>
+                  <span>{{ leave.data.LeaveDays }} days</span>
+                </div>
+                <div class="tile">
+                  <span>Period</span>
+                  <span>{{ formatDate(leave.data.StartDate) }} to <br> {{ formatDate(leave.data.EndDate) }}</span>
+                </div>
+            </div>
+            <div class="hide-block" [ngClass]="{'expanded' : leave.expanded}">
+                <div class="tile">
+                <span>Status</span>
+                <span>{{ leave.data.Status || 'Approved' }}</span>
+                </div>
+                <div class="tile">
+                  <span>Quota Number</span>
+                  <span>{{ leave.data.QuotaNumber }}</span>
+                </div>
+                <div class="tile">
+                  <span>Quota Period</span>
+                  <span>{{ formatDate(leave.data.StartDateQuota) }} to <br> {{ formatDate(leave.data.EndDateQuota)}}</span>
+                </div>
+                <div class="tile">
+                  <span>Reason</span>
+                  <span>{{ leave.data.Reason || 'Not specified' }}</span>
+                </div>
+                <div class="tile">
+                  <span>Employee ID</span>
+                  <span>{{ leave.data.EmployeeId }}</span>
+                </div>
+              </div>
+              <div class="button-pair">
+                <button (click)="onExpand(leave)">{{ leave.expanded ? "Collapse" : "Expand" }}</button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="filter-container">
+    <div class="filter-tile">
+      <label for="leaveType">Leave Type</label>
+      <select [formControl]="leaveTypeFilter" name="leaveType">
+        <option value="">All Types</option>
+        <option value="0300">Annual Leave</option>
+        <option value="0720">Sick Leave</option>
+        <option value="0500">Maternity Leave</option>
+        <option value="0400">Unpaid Leave</option>
+      </select>
+    </div>
+    <div class="filter-tile">
+      <label for="dateRange">Date Range</label>
+      <div style="display: flex; gap: 1rem;">
+        <input type="date" [formControl]="startDateFilter" placeholder="Start date">
+        <input type="date" [formControl]="endDateFilter" placeholder="End date">
+      </div>
+    </div>
+    <div class="filter-tile">
+      <label for="sort">Sort by</label>
+      <select [formControl]="sortBy" name="sort">
+        <option value="">--None--</option>
+        <option value="startDate-asc">Start Date (Oldest first)</option>
+        <option value="startDate-desc">Start Date (Newest first)</option>
+        <option value="duration-asc">Duration (Shortest first)</option>
+        <option value="duration-desc">Duration (Longest first)</option>
+      </select>
+    </div>
+  </div>
+</div>
