@@ -22,6 +22,19 @@
     border-radius: calc(infinity * 1rem);
 }
 
+.escape {
+    color: white;
+    position: absolute;
+    left: 80rem;
+    top: 2.5rem;
+    font-size: xx-large;
+    cursor: pointer;
+}
+
+.escape:hover {
+    color: var(--secondary-color);
+}
+
 .form-card-entry {
     display: flex;
     flex-direction: column;

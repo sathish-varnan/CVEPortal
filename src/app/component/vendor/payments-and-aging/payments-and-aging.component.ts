@@ -12,6 +12,11 @@ interface PaymentAging {
   expanded: boolean;
 }
 
+function _convert(date: string): string {
+  const [day, mon, yr] = date.split('-');
+  return `${mon}-${day}-${yr}`;
+}
+
 @Component({
   selector: 'app-payment-and-aging',
   standalone: true,
@@ -39,63 +44,91 @@ export class PaymentsAndAgingComponent implements OnInit {
     // Get account number from localStorage or wherever it's stored
     const accountNumber = localStorage.getItem("vendor-account-number") ?? '100000';
 
-    // Set up combined filter
-    combineLatest([
-      this.docNumber.valueChanges,
-      this.docType.valueChanges,
-      this.minAmount.valueChanges,
-      this.maxAmount.valueChanges,
-      this.date.valueChanges,
-      this.financialYear.valueChanges
-    ]).pipe(debounceTime(300)).subscribe(([
-      docNumber, docType, minAmount, maxAmount, date, financialYear
-    ]) => {
-      let filteredData = [...this.BASE_DATA()];
 
-      // Apply filters
-      if (docNumber) {
-        filteredData = filteredData.filter(item => 
-          item.data.DocNumber.includes(docNumber)
-        );
-      }
-
-      if (docType) {
-        filteredData = filteredData.filter(item => 
-          item.data.DocType.includes(docType)
-        );
-      }
-
-      if (minAmount !== null) {
-        filteredData = filteredData.filter(item => 
-          parseFloat(item.data.Amount) >= minAmount
-        );
-      }
-
-      if (maxAmount !== null) {
-        filteredData = filteredData.filter(item => 
-          parseFloat(item.data.Amount) <= maxAmount
-        );
-      }
-
-      if (financialYear) {
-        filteredData = filteredData.filter(item => 
-          item.data.FinancialYr.includes(financialYear)
-        );
-      }
-
-      // Apply sorting
-      if (date === 'asc') {
-        filteredData.sort((a, b) => 
-          new Date(a.data.PostingDate).getTime() - new Date(b.data.PostingDate).getTime()
-        );
-      } else if (date === 'desc') {
-        filteredData.sort((a, b) => 
-          new Date(b.data.PostingDate).getTime() - new Date(a.data.PostingDate).getTime()
-        );
-      }
-
+    this.docNumber.valueChanges.subscribe(value => {
+      const searchText = value ?? '';
+      const filteredData = this.BASE_DATA()
+      .filter(item => item.data.DocNumber?.includes(searchText));
       this.data.set(filteredData);
     });
+
+    this.docType.valueChanges.subscribe(value => {
+      const searchText = (value ?? '').toLowerCase();
+      const filteredData = this.BASE_DATA()
+      .filter(item => item.data.DocType?.toLowerCase().includes(searchText));
+      this.data.set(filteredData);
+    });
+
+    this.date.valueChanges.subscribe(value => {
+      if (value === 'desc') {
+        this.data.set([...this.BASE_DATA()].sort((a, b) =>
+          new Date(_convert(b.data.DocDate)).getTime() - new Date(_convert(a.data.DocDate)).getTime()
+        ));
+      } else if (value === 'asc') {
+        this.data.set([...this.BASE_DATA()].sort((a, b) => 
+          new Date(a.data.DocDate).getTime() - new Date(b.data.DocDate).getTime()
+        ));
+      } else {
+        this.data.set(this.BASE_DATA());
+      }
+    });
+
+    this.financialYear.valueChanges.subscribe(value => {
+      const searchText = (value ?? '').toLowerCase();
+      const filteredData = this.BASE_DATA()
+      .filter(item => item.data.FinancialYr?.toLowerCase().includes(searchText));
+      this.data.set(filteredData);
+    })
+
+    // Set up combined filter
+    // combineLatest([
+    //   this.docType.valueChanges,
+    //   this.minAmount.valueChanges,
+    //   this.maxAmount.valueChanges,
+    //   this.date.valueChanges,
+    //   this.financialYear.valueChanges
+    // ]).pipe(debounceTime(300)).subscribe(([
+    //   docType, minAmount, maxAmount, date, financialYear
+    // ]) => {
+    //   let filteredData = [...this.BASE_DATA()];
+
+    //   if (docType) {
+    //     filteredData = filteredData.filter(item => 
+    //       item.data.DocType.includes(docType)
+    //     );
+    //   }
+
+    //   if (minAmount !== null) {
+    //     filteredData = filteredData.filter(item => 
+    //       parseFloat(item.data.Amount) >= minAmount
+    //     );
+    //   }
+
+    //   if (maxAmount !== null) {
+    //     filteredData = filteredData.filter(item => 
+    //       parseFloat(item.data.Amount) <= maxAmount
+    //     );
+    //   }
+
+    //   if (financialYear) {
+    //     filteredData = filteredData.filter(item => 
+    //       item.data.FinancialYr.includes(financialYear)
+    //     );
+    //   }
+
+    //   // Apply sorting
+    //   if (date === 'asc') {
+    //     filteredData.sort((a, b) => 
+    //       new Date(a.data.PostingDate).getTime() - new Date(b.data.PostingDate).getTime()
+    //     );
+    //   } else if (date === 'desc') {
+    //     filteredData.sort((a, b) => 
+    //       new Date(b.data.PostingDate).getTime() - new Date(a.data.PostingDate).getTime()
+    //     );
+    //   }
+
+    //   this.data.set(filteredData);
+    // });
 
     // Fetch payment and aging data
     try {

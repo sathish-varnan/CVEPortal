@@ -108,6 +108,19 @@ export class EmployeePayslipComponent implements OnInit {
     this.data.set(updatedData);
   }
 
+  onEmail(employeeId: string) {
+    this.http.get(
+      `http://localhost:3000/employee/email?employeeId=${employeeId}`,
+    ).subscribe({
+      next: (response) => {
+        alert("Email sent successfully");
+      },
+      error: (error) => {
+        alert(error);
+      }
+    })
+  }
+
   onPrint(employeeId: string) {
     this.http.get(
       `http://localhost:3000/employee/payslip-pdf?employeeId=${employeeId}`,

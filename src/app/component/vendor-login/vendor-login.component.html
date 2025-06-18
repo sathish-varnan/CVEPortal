@@ -1,5 +1,7 @@
 <section class="main-container">
   <h1 class="card-title">Vendor Portal</h1>
+    <span class="material-icons-outlined escape" (click)="this.router.navigate(['/'])">exit_to_app</span>
+
   <form class="form-card" [formGroup]="userDetails" (ngSubmit)=onClick()>
     <img src="person.jpg" alt="user">
     <div class="form-card-detail">
